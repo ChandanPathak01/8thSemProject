@@ -1,0 +1,79 @@
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+const config = require('../config/config');
+
+// Middleware to authenticate regular users
+const authenticateUser = (req, res, next) => {
+  // Extract the token from the request headers
+  const token = req.headers.authorization;
+
+  // Check if token is provided
+  if (!token) {
+    return res.status(401).json({ message: 'Authentication token is missing' });
+  }
+
+  try {
+    // Verify the token
+    const decodedToken = jwt.verify(token, config.jwtSecret);
+
+    // Check if the decoded token contains a valid user ID
+    if (!decodedToken.userId) {
+      return res.status(401).json({ message: 'Invalid authentication token' });
+    }
+
+    // Fetch the user from the database
+    User.findById(decodedToken.userId)
+      .then(user => {
+        if (!user) {
+          return res.status(401).json({ message: 'User not found' });
+        }
+
+        // Attach the user object to the request for further use
+        req.user = user;
+        next();
+      })
+      .catch(error => {
+        console.error('Error retrieving user:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      });
+  } catch (error) {
+    console.error('Error verifying authentication token:', error);
+    res.status(401).json({ message: 'Invalid authentication token' });
+  }
+};
+
+// Middleware to authenticate admins
+const authenticateAdmin =  (req, res, next) => {
+  // Extract the token from the request headers
+  const token = req.headers.authorization;
+
+  // Check if token is provided
+  if (!token) {
+    return res.status(401).json({ message: 'Authentication token is missing' });
+  }
+
+  try {
+    // Verify the token
+   const jwtToken = token.slice(7, token.length);
+    const decodedToken =  jwt.verify(jwtToken, config.jwtSecret);
+
+    // Check if the decoded token contains a valid admin ID
+    if (!decodedToken.adminId) {
+      return res.status(401).json({ message: 'Invalid authentication token' });
+    }
+
+    // Perform additional checks if necessary (e.g., check if the user is an admin in the database)
+
+    // Attach the admin ID to the request for further use
+    req.adminId = decodedToken.adminId;
+    next();
+  } catch (error) {
+    console.error('Error verifying authentication token:', error);
+    res.status(401).json({ message: 'Invalid authentication token' });
+  }
+};
+
+module.exports = {
+  authenticateUser,
+  authenticateAdmin
+};
