@@ -45,7 +45,7 @@
 }
 
 .navbar-menu-item a {
-  color: #faf6f6;
+  color: #242222;
   text-decoration: none;
 }
 
@@ -58,7 +58,7 @@
 .navbar-mobile-menu-toggle-line {
   width: 25px;
   height: 2px;
-  background-color: #333;
+  background-color: #0e0d0d;
   margin-bottom: 4px;
 }
 
@@ -90,6 +90,9 @@
     display: flex;
   }
 }
+
+
+
 .registration-form-container {
   display: flex;
   justify-content: center;
@@ -152,3 +155,78 @@
   }
 }
 
+.loginPage {
+  background: url('bg.jpg');
+  background: linear-gradient(rgba(11, 11, 11, 0.5), rgba(10, 10, 10, 0.5)), url("bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 120%;
+}
+
+.loginForm {
+  background-color: rgba(1, 32, 93, 0.6);
+  color: white;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.apply-button, .leave-button {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.leave-form {
+  width: 400px;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+select,
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #7979b3;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.center-heading {
+  text-align: center;
+}

@@ -8,7 +8,7 @@ const authRoutes = require('./routes/login');
 
 
 app.use(cors({
-  origin:"http://localhost:3001"
+  origin:"http://localhost:3000"
 }))
 
 
@@ -23,6 +23,12 @@ mongoose.connection.on('connected',conncted=>{
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 // Routes
 app.use('/userReg', userRegRoutes);
