@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
 const config = require('./config/config')
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjQ3YzIzYTBmYzM4Nzg1NmQ1NmM4MzYwIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNjg1ODY1ODQzLCJleHAiOjE2ODU4Njk0NDN9.M7H1DTo5OzJB73SBDSl7Z9RnOo5xPDFp4B6alFl2dAQ'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDdjMjNhMGZjMzg3ODU2ZDU2YzgzNjAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2ODYxOTI5NjMsImV4cCI6MTY4NjE5NjU2M30.GqDyKfY7tknItvLVGY49w1NvMyxGchwf1UC0MQv5v90'
 const decodedToken =  jwt.verify(token, config.jwtSecret);
 console.log(decodedToken)

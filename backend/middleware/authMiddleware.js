@@ -5,7 +5,8 @@ const config = require('../config/config');
 // Middleware to authenticate regular users
 const authenticateUser = (req, res, next) => {
   // Extract the token from the request headers
-  const token = req.headers.authorization;
+  const authtoken = req.headers.authorization;
+  const token = authtoken.slice(7, authtoken.length);
 
   // Check if token is provided
   if (!token) {
@@ -43,10 +44,10 @@ const authenticateUser = (req, res, next) => {
 };
 
 // Middleware to authenticate admins
-const authenticateAdmin =  (req, res, next) => {
+const authenticateAdmin = (req, res, next) => {
   // Extract the token from the request headers
-  const token = req.headers.authorization;
-
+  const authtoken = req.headers.authorization;
+  const token = authtoken.slice(7, authtoken.length);
   // Check if token is provided
   if (!token) {
     return res.status(401).json({ message: 'Authentication token is missing' });
@@ -54,15 +55,12 @@ const authenticateAdmin =  (req, res, next) => {
 
   try {
     // Verify the token
-   const jwtToken = token.slice(7, token.length);
-    const decodedToken =  jwt.verify(jwtToken, config.jwtSecret);
+    const decodedToken = jwt.verify(token, config.jwtSecret);
 
     // Check if the decoded token contains a valid admin ID
-    if (!decodedToken.adminId) {
+    if (!decodedToken.userId) {
       return res.status(401).json({ message: 'Invalid authentication token' });
     }
-
-    // Perform additional checks if necessary (e.g., check if the user is an admin in the database)
 
     // Attach the admin ID to the request for further use
     req.adminId = decodedToken.adminId;
