@@ -134,8 +134,12 @@ function AddUser() {
 		formdata.append("role", data.role);
     // formdata.append("department",data.department);
 	// 	formdata.append("image", data.image);
-		axios.post('http://localhost:8000/userReg/register', formdata, {
-			withCredentials: true // Include credentials in the request
+	 const token= localStorage.getItem('token')
+		axios.post('http://localhost:8000/userReg/register', data, {
+			headers:{
+				'Content-Type': 'application/json',
+				'Authorization':`Bearer ${token}`
+			}
 		  }) //yha pe add user ka api hoga
 		.then(res => {
 			navigate('/ManageUser')

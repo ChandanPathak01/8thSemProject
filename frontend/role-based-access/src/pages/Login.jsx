@@ -19,6 +19,7 @@ const Login = () => {
       .post("http://localhost:8000/login", credentials)
       .then((response) => {
         if (response.data.role=== "Admin") {
+          localStorage.setItem('token',response.data.token);
           navigate("/admin-home");
         } else if (response.data.role === "Faculty") {
           navigate("/faculty-home");

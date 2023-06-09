@@ -1,14 +1,14 @@
 import React from 'react';
+import RegistrationForm from './RegistrationForm';
  
- 
-import Dashboard from './Dashboard';
+// import Dashboard from './Dashboard';
  
 const AdminHome = () => {
   return (
     <div>
        
-       
-      <Dashboard/>
+      <RegistrationForm/>
+      {/* <Dashboard/> */}
     </div>
   );
 };
