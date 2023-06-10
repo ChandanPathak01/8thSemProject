@@ -12,7 +12,7 @@ function Dashboard() {
             if (response.data.accountType === "admin") {
               navigate("/admin-home");
             } else if (response.data.accountType === "Faculty") {
-              navigate("/student-home");
+              navigate("/Faculty-home");
             } else {
               navigate('/start');
             }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setUserData}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,7 +20,8 @@ const Login = () => {
       .then((response) => {
         if (response.data.role=== "Admin") {
           localStorage.setItem('token',response.data.token);
-          localStorage.setItem('userDetails',response.data.userDetails);
+          // localStorage.setItem('userDetails',response.data.userDetails);
+          setUserData(response.data.userDetails);
           navigate("/admin-home");
         } else if (response.data.role === "Faculty") {
           navigate("/faculty-home");
