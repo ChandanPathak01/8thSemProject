@@ -7,6 +7,7 @@ const userRegRoutes = require('./routes/userRegRoutes');
 const authRoutes = require('./routes/login');
 
 
+
 app.use(cors({
   origin:"*"
 }))

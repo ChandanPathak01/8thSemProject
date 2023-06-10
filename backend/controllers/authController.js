@@ -21,13 +21,13 @@ const login = async (req, res) => {
 
     // Determine the role of the user
     const role = user.role;
-
+    const userDetails = await User.find({ role: { $ne: 'Admin' } }, 'name email password role');
     // Generate JWT token
     const token = jwt.sign({ userId: user._id, role: user.role }, jwtSecret, {
       expiresIn: '1h'
     });
 
-    res.status(200).json({ role, token });
+    res.status(200).json({ role, token, userDetails });
 
     // Redirect the user based on their role
     // switch (role) {
