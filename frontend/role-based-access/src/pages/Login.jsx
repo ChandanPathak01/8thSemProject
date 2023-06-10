@@ -20,6 +20,7 @@ const Login = () => {
       .then((response) => {
         if (response.data.role=== "Admin") {
           localStorage.setItem('token',response.data.token);
+          localStorage.setItem('userDetails',response.data.userDetails);
           navigate("/admin-home");
         } else if (response.data.role === "Faculty") {
           navigate("/faculty-home");
