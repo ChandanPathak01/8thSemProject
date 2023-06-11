@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const cors=require('cors');
 const app = express();
 const bodyParser = require('body-parser');
-const userRegRoutes = require('./routes/userRegRoutes');
 const authRoutes = require('./routes/login');
+const userProfile = require('./routes/profile');
+const userRegRoutes = require('./routes/userRegRoutes');
 
 
 
@@ -32,8 +33,9 @@ app.use(bodyParser.json());
 // });
 
 // Routes
-app.use('/userReg', userRegRoutes);
 app.use('/login', authRoutes);
+app.use('/userReg', userRegRoutes);
+app.use('/userProfile', userProfile);
 
 app.use((req,res,next)=>{
   res.status(404).json({

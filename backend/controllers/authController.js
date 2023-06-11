@@ -23,33 +23,14 @@ const login = async (req, res) => {
     const role = user.role;
     const userDetails = await User.find({ role: { $ne: 'Admin' } }, 'name email password role -_id');
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id, role: user.role }, jwtSecret, {
-      expiresIn: '1h'
-    });
-
+    const token = jwt.sign({ userId: user._id, role: user.role }, jwtSecret, {expiresIn: '1h'});
+    if (role==='Admin'){
     res.status(200).json({ role, token, userDetails });
+    }
+    else {
+      res.status(200).json({ role, token });
+    }
 
-    // Redirect the user based on their role
-    // switch (role) {
-    //   case 'Admin':
-    //     // Redirect to admin dashboard
-    //     res.status(200).json({ role: 'Admin', redirect: '/admin/dashboard', token });
-    //     break;
-    //   case 'Principal':
-    //     // Redirect to principal dashboard
-    //     res.status(200).json({ role: 'Principal', redirect: '/principal/dashboard', token });
-    //     break;
-    //   case 'HOD':
-    //     // Redirect to HOD dashboard
-    //     res.status(200).json({ role: 'HOD', redirect: '/hod/dashboard', token });
-    //     break;
-    //   case 'Faculty':
-    //     // Redirect to faculty dashboard
-    //     res.status(200).json({ role: 'Faculty', redirect: '/faculty/dashboard', token });
-    //     break;
-    //   default:
-    //     res.status(401).json({ message: 'Invalid user' });
-    // }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'An error occurred' });

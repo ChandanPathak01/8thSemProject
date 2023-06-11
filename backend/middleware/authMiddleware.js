@@ -63,8 +63,8 @@ const authenticateAdmin = (req, res, next) => {
     }
 
     // Attach the admin ID to the request for further use
-    req.adminId = decodedToken.adminId;
-    next();
+    // req.adminId = decodedToken.adminId;
+    // next();
   } catch (error) {
     console.error('Error verifying authentication token:', error);
     res.status(401).json({ message: 'Invalid authentication token' });
