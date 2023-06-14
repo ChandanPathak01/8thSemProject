@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
+
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -7,7 +8,11 @@ const Navbar = () => {
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(prevState => !prevState);
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/Login');
+  }
+  const navigate = useNavigate();
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -23,7 +28,7 @@ const Navbar = () => {
         <ul className={`navbar-menu ${isMobileMenuOpen ? 'open' : ''}`}>
           <li className="navbar-menu-item"><Link to="/faculty-home">Home</Link></li>
           <li className="navbar-menu-item"><Link to="/LeaveHistory">Leave History</Link></li>
-          <li className="navbar-menu-item"><Link to="/">Logout</Link></li>
+          <li className="navbar-menu-item"><a href="/" onClick={handleLogout}>Logout</a></li>
         </ul>
       </div>
     </nav>

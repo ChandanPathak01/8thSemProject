@@ -6,32 +6,36 @@ import App from './App';
 import AdminHome from './pages/AdminHome';
 import reportWebVitals from './reportWebVitals';
 import UserPage from './pages/UserPage';
-import Dashboard from './pages/Dashboard';
+ 
 import ManageUser from './pages/ManageUser';
 import RegistrationForm from './pages/RegistrationForm';
-import AdminDash from './pages/AdminDash';
+import Login from './pages/Login';
 import FacultyHome from './pages/FacultyHome';
 import ApplyLeave from './pages/ApplyLeave';
 import PeopleOnLeave from './pages/PeopleOnLeave';
 import LeaveHistory from './pages/LeaveHistory';
+import HodHome from './pages/HodHome';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/Login" element={<Login/>} />
         <Route path="/admin-home" element={<AdminHome />} />
+        <Route path="/ManageUser" element={<ManageUser />} />
+        <Route path="/RegistrationForm" element={<RegistrationForm />} />
         <Route path="/UserPage" element={<UserPage />} />
         <Route path="/faculty-home" element={<FacultyHome />} />
         <Route path="/ApplyLeave" element={<ApplyLeave />} />
-        <Route path="/PeopleOnLeave" element={<PeopleOnLeave/>}></Route>
+        <Route path="/PeopleOnLeave" element={<PeopleOnLeave/>}/> 
         <Route path='/LeaveHistory' element={<LeaveHistory/>}/>
-        <Route path="/" element={<Dashboard />}>
-          <Route path="/ManageUser" element={<ManageUser />} />
-          <Route path="/RegistrationForm" element={<RegistrationForm />} />
-          <Route path="/AdminDash" element={<AdminDash />} />
+        <Route path='/HodHome'  element={<HodHome/>}/>
+         
            
-        </Route>
+           
+           
+        
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

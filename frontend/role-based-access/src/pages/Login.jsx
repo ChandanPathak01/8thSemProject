@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({setUserData}) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,15 +21,15 @@ const Login = ({setUserData}) => {
         if (response.data.role=== "Admin") {
           localStorage.setItem('token',response.data.token);
           // localStorage.setItem('userDetails',response.data.userDetails);
-          setUserData(response.data.userDetails);
+          // setUserData(response.data.userDetails);
           navigate("/admin-home");
         } else if (response.data.role === "Faculty") {
           navigate("/faculty-home");
         }
-        else if (response.data.accountType === "HOD") {
-          navigate("/");
+        else if (response.data.role === "HOD") {
+          navigate("/HodHome");
         }
-        else if (response.data.accountType === "Principal") {
+        else if (response.data.role === "Principal") {
           navigate("/");
         }
       })
@@ -109,7 +109,7 @@ const Login = ({setUserData}) => {
         </div>
         <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
           <div className="text-white mb-3 mb-md-0">
-            Copyright © 2020. All rights reserved.
+            Copyright © 2023. All rights reserved to Aditi .
           </div>
 
           {/* <div>

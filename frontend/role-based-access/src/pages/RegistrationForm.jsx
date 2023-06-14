@@ -1,114 +1,3 @@
-// import React, { useState } from 'react';
-
-// const RegistrationForm = () => {
-//   const [formData, setFormData] = useState({
-//     firstName: '',
-//     lastName: '',
-//     email: '',
-//     password: '',
-//     phoneNo:'',
-//     designation:'',
-//     department:''
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log(formData); // You can perform form submission or validation here
-//   };
-
-//   return (
-//     <div className="registration-form-container">
-//       <form className="registration-form" onSubmit={handleSubmit}>
-//         <h2>Registration User</h2>
-//         <div className="form-group">
-//           <label htmlFor="firstName">First Name:</label>
-//           <input
-//             type="text"
-//             id="firstName"
-//             name="firstName"
-//             value={formData.firstName}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="lastName">Last Name:</label>
-//           <input
-//             type="text"
-//             id="lastName"
-//             name="lastName"
-//             value={formData.lastName}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="email">Email:</label>
-//           <input
-//             type="email"
-//             id="email"
-//             name="email"
-//             value={formData.email}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="password">Password:</label>
-//           <input
-//             type="password"
-//             id="password"
-//             name="password"
-//             value={formData.password}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="phoneno">PhoneNo:</label>
-//           <input
-//             type="phoneno"
-//             id="phoneno"
-//             name="phoneno"
-//             value={formData.phoneNo}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="designation">Designation:</label>
-//           <input
-//             type="designation"
-//             id="designation"
-//             name="designation"
-//             value={formData.designation}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="department">Department:</label>
-//           <input
-//             type="department"
-//             id="department"
-//             name="department"
-//             value={formData.department}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-//         <button type="submit">Register</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default RegistrationForm;
-
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -141,8 +30,8 @@ function AddUser() {
 				'Authorization':`Bearer ${token}`
 			}
 		  }) //yha pe add user ka api hoga
-		.then(res => {
-			navigate('/ManageUser')
+		.then(response => {
+			navigate('/admin-home')
 		})
 		.catch(err => console.log(err));
 	}
