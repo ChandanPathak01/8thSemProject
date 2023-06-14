@@ -1,96 +1,108 @@
-import React from 'react';
-import RegistrationForm from './RegistrationForm';
-import Dashboard from './Dashboard'; 
-// import Dashboard from './Dashboard';
- 
-const AdminHome = ({userData}) => {
+import React from "react";
+import { useRef,   useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+// import axios from 'axios';
+
+function AdminHome() {
+  const navRef = useRef();
+  const navigate = useNavigate();
+
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
+
+  const [data, setData] = useState([]);
+  // const [data, ] =useState([]);
+
+  // useEffect(() => {
+  //   axios.get('http://localhost:8081/getuser')
+  //     .then(res => {
+  //       if (res.data.Status === "Success") {
+  //         setData(res.data.Result);
+  //       } else {
+  //         alert("Error");
+  //       }
+  //     })
+  //     .catch(err => console.log(err));
+  // }, []);
+
+  // const handleDelete = (id) => {
+  //   axios.delete('http://localhost:8081/delete/' + id)
+  //     .then(res => {
+  //       if (res.data.Status === "Success") {
+  //         window.location.reload(true);
+  //       } else {
+  //         alert("Error");
+  //       }
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/Login');
+  }
+
   return (
     <div>
-       
-      {/* <RegistrationForm/> */}
-      <Dashboard/>
+      <header>
+        <h3>LMS</h3>
+        <nav ref={navRef}>
+          <a href="/" onClick={handleLogout}  >
+            Logout
+          </a>
+
+          <button
+            className="nav-btn nav-close-btn"
+            onClick={showNavbar}>
+            <FaTimes />
+          </button>
+        </nav>
+        <button className="nav-btn" onClick={showNavbar}>
+          <FaBars />
+        </button>
+      </header>
+      <div className='px-5 py-3'>
+        <div className='d-flex justify-content-center mt-2'>
+          <h3>User List</h3>
+        </div>
+        <Link to="/RegistrationForm" className='btn btn-success'>Add User</Link>
+        <div className='mt-3'>
+          <table className='table'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>PhoneNo</th>
+                <th>Designation</th>
+                <th>Department</th>
+                <th>Password</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((user, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.PhoneNo}</td>
+                    <td>{user.Department}</td>
+                    <td>{user.Designation}</td>
+                    <td>{user.Password}</td>
+                    <td>
+                      <Link to={`/userEdit/${user.id}`} className='btn btn-primary btn-sm me-2'>edit</Link>
+                      {/* <button onClick={e => handleDelete(user.id)} className='btn btn-sm btn-danger'>delete</button> */}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default AdminHome;
-// import axios from 'axios'
-// import React, { useEffect, useState } from 'react'
-
-// function AdminHome() {
-//   const [adminCount, setAdminCount] = useState()
-//   const [employeeCount, setEmployeeCount] = useState()
-//   const [salary, setSalary] = useState()
-
-//   useEffect(() => {
-//     axios.get('http://localhost:8081/adminCount')
-// 		.then(res => {
-// 			setAdminCount(res.data[0].admin)
-// 		}).catch(err => console.log(err));
-
-//     axios.get('http://localhost:8081/employeeCount')
-// 		.then(res => {
-// 			setEmployeeCount(res.data[0].employee)
-// 		}).catch(err => console.log(err));
-
-//     axios.get('http://localhost:8081/salary')
-// 		.then(res => {
-// 			setSalary(res.data[0].sumOfSalary)
-// 		}).catch(err => console.log(err));
-
-//   } , [])
-//   return (
-//     <div>
-//       <div className='p-3 d-flex justify-content-around mt-3'>
-//         <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
-//           <div className='text-center pb-1'>
-//             <h4>Admin</h4>
-//           </div>
-//           <hr />
-//           <div className=''>
-//             <h5>Total: {adminCount}</h5>
-//           </div>
-//         </div>
-//         <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
-//           <div className='text-center pb-1'>
-//             <h4>Employee</h4>
-//           </div>
-//           <hr />
-//           <div className=''>
-//             <h5>Total: {employeeCount}</h5>
-//           </div>
-//         </div>
-//         <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
-//           <div className='text-center pb-1'>
-//             <h4>Salary</h4>
-//           </div>
-//           <hr />
-//           <div className=''>
-//             <h5>Total: {salary}</h5>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* List of admin  */}
-//       <div className='mt-4 px-5 pt-3'>
-//         <h3>List of Admins</h3>
-//         <table className='table'>
-//           <thead>
-//             <tr>
-//               <th>Email</th>
-//               <th>Action</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             <tr>
-//               <td>Admin</td>
-//               <td>Admin</td>
-//             </tr>
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default AdminHome;
