@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef,    } from "react";
+import { useRef,useState    } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -14,7 +14,25 @@ function HodHome() {
       localStorage.removeItem('token');
       navigate('/Login');
     }
+    const [showList, setShowList] = useState(false);
+    const [leaveData, setLeaveData] = useState([]);
+    const [selectedDate, setSelectedDate] = useState('');
   
+    const toggleList = () => {
+      setShowList(!showList);
+    };
+  
+    const handleFilter = () => {
+      // Perform filtering based on the selected date
+      const filteredData = leaveData.filter(person => {
+        // Assuming each person has a 'date' property representing the leave date
+        return person.date === selectedDate;
+      });
+  
+      // Update the leaveData state with the filtered data
+      setLeaveData(filteredData);
+    };
+    
     return (
       <div>
         <header>
@@ -39,15 +57,48 @@ function HodHome() {
         <Link to="/ApplyLeave" className="apply-button">
           Apply for Leave
         </Link>
-        <Link to="/" className="apply-button">
+        <Link to="/LeaveRequest" className="apply-button">
           Leave Request
         </Link>
-        <Link to="/PeopleOnLeave" className="apply-button">
-          People on Leave
-        </Link>
-      </div>
-        </div>
-    );
-    }
+         
 
+  
+    <div className="leave-list">
+      <button onClick={toggleList}>People on Leave</button>
+      {showList && (
+        <div className="leave-list-container">
+          <h2>List of People on Leave</h2>
+          <div className="filter-container">
+            <label htmlFor="dateFilter">Filter by Date:</label>
+            <input
+              type="date"
+              id="dateFilter"
+              value={selectedDate}
+              onChange={event => setSelectedDate(event.target.value)}
+            />
+            <button onClick={handleFilter}>Apply</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Name of Faculty</th>
+                <th>Department</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaveData.map(person => (
+                <tr key={person.id}>
+                  <td>{person.name}</td>
+                  <td>{person.department}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+    </div>
+    </div>
+  );
+              }
 export default HodHome;

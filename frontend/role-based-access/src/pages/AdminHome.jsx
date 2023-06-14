@@ -1,8 +1,8 @@
 import React from "react";
-import { useRef,   useState } from "react";
+import { useRef,useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
 
 function AdminHome() {
   const navRef = useRef();
@@ -13,31 +13,16 @@ function AdminHome() {
   };
 
   const [data, setData] = useState([]);
-  // const [data, ] =useState([]);
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:8081/getuser')
-  //     .then(res => {
-  //       if (res.data.Status === "Success") {
-  //         setData(res.data.Result);
-  //       } else {
-  //         alert("Error");
-  //       }
-  //     })
-  //     .catch(err => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axios.get('http://localhost:8000/users')
+      .then(res => {
+        setData(res.data.userDetails);
+      })
+      .catch(err => console.log(err));
+  }, []);
+  
 
-  // const handleDelete = (id) => {
-  //   axios.delete('http://localhost:8081/delete/' + id)
-  //     .then(res => {
-  //       if (res.data.Status === "Success") {
-  //         window.location.reload(true);
-  //       } else {
-  //         alert("Error");
-  //       }
-  //     })
-  //     .catch(err => console.log(err));
-  // }
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -74,10 +59,11 @@ function AdminHome() {
               <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>PhoneNo</th>
+                {/* <th>PhoneNo</th>
                 <th>Designation</th>
-                <th>Department</th>
-                <th>Password</th>
+                <th>Department</th> */}
+                <th>Role</th>
+                {/* <th>Password</th> */}
               </tr>
             </thead>
             <tbody>
@@ -86,13 +72,14 @@ function AdminHome() {
                   <tr key={index}>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
-                    <td>{user.PhoneNo}</td>
+                    <td>{user.role}</td>
+                    {/* <td>{user.PhoneNo}</td>
                     <td>{user.Department}</td>
-                    <td>{user.Designation}</td>
-                    <td>{user.Password}</td>
+                    <td>{user.Designation}</td> */}
+                    {/* <td>{user.Password}</td> */}
                     <td>
                       <Link to={`/userEdit/${user.id}`} className='btn btn-primary btn-sm me-2'>edit</Link>
-                      {/* <button onClick={e => handleDelete(user.id)} className='btn btn-sm btn-danger'>delete</button> */}
+                       
                     </td>
                   </tr>
                 );
