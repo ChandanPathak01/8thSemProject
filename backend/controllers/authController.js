@@ -21,22 +21,15 @@ const login = async (req, res) => {
 
     // Determine the role of the user
     const role = user.role;
-    const userDetails = await User.find({ role: { $ne: 'Admin' } }, 'name email password role -_id');
     // Generate JWT token
     const token = jwt.sign({ userId: user._id, role: user.role }, jwtSecret, {expiresIn: '1h'});
-    if (role==='Admin'){
-    res.status(200).json({ role, token, userDetails });
-    }
-    else {
-      res.status(200).json({ role, token });
-    }
-
+    res.status(200).json({ role, token});
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'An error occurred' });
   }
 };
 
-module.exports = {
-  login
-};
+
+module.exports = {login};

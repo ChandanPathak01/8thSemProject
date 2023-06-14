@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/login');
 const userProfile = require('./routes/profile');
 const userRegRoutes = require('./routes/userRegRoutes');
+const allUser = require('./routes/getUser');
+
 
 
 
@@ -34,8 +36,10 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/login', authRoutes);
+app.use('/users', allUser);
 app.use('/userReg', userRegRoutes);
 app.use('/userProfile', userProfile);
+
 
 app.use((req,res,next)=>{
   res.status(404).json({

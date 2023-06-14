@@ -46,6 +46,7 @@ const authenticateUser = (req, res, next) => {
 // Middleware to authenticate admins
 const authenticateAdmin = (req, res, next) => {
   // Extract the token from the request headers
+  
   const authtoken = req.headers.authorization;
   const token = authtoken.slice(7, authtoken.length);
   // Check if token is provided
@@ -63,8 +64,8 @@ const authenticateAdmin = (req, res, next) => {
     }
 
     // Attach the admin ID to the request for further use
-    // req.adminId = decodedToken.adminId;
-    // next();
+    req.adminId = decodedToken.adminId;
+    next();
   } catch (error) {
     console.error('Error verifying authentication token:', error);
     res.status(401).json({ message: 'Invalid authentication token' });
