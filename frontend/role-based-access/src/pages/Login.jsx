@@ -26,10 +26,10 @@ const Login = () => {
         } else if (response.data.role === "Faculty") {
           navigate("/faculty-home");
         }
-        else if (response.data.accountType === "HOD") {
-          navigate("/");
+        else if (response.data.role === "HOD") {
+          navigate("/HodHome");
         }
-        else if (response.data.accountType === "Principal") {
+        else if (response.data.role === "Principal") {
           navigate("/");
         }
       })
@@ -109,7 +109,7 @@ const Login = () => {
         </div>
         <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
           <div className="text-white mb-3 mb-md-0">
-            Copyright © 2020. All rights reserved.
+            Copyright © 2023. All rights reserved to Aditi .
           </div>
 
           {/* <div>

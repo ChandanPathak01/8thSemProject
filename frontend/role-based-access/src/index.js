@@ -14,6 +14,7 @@ import FacultyHome from './pages/FacultyHome';
 import ApplyLeave from './pages/ApplyLeave';
 import PeopleOnLeave from './pages/PeopleOnLeave';
 import LeaveHistory from './pages/LeaveHistory';
+import HodHome from './pages/HodHome';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -27,8 +28,9 @@ ReactDOM.render(
         <Route path="/UserPage" element={<UserPage />} />
         <Route path="/faculty-home" element={<FacultyHome />} />
         <Route path="/ApplyLeave" element={<ApplyLeave />} />
-        <Route path="/PeopleOnLeave" element={<PeopleOnLeave/>}></Route>
+        <Route path="/PeopleOnLeave" element={<PeopleOnLeave/>}/> 
         <Route path='/LeaveHistory' element={<LeaveHistory/>}/>
+        <Route path='/HodHome'  element={<HodHome/>}/>
          
            
            
