@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef,useState    } from "react";
+import { useRef,useState, useEffect    } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -22,17 +22,30 @@ function HodHome() {
       setShowList(!showList);
     };
   
-    const handleFilter = () => {
-      // Perform filtering based on the selected date
-      const filteredData = leaveData.filter(person => {
-        // Assuming each person has a 'date' property representing the leave date
-        return person.date === selectedDate;
-      });
-  
-      // Update the leaveData state with the filtered data
-      setLeaveData(filteredData);
+    const handleFilter = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/leaveList?date=${selectedDate}`);
+        const data = await response.json();
+        setLeaveData(data.pplList);
+      } catch (error) {
+        console.error("Error fetching leave data:", error);
+      }
     };
-    
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch("http://localhost:8000/leaveList");
+          const data = await response.json();
+          setLeaveData(data.pplList);
+        } catch (error) {
+          console.error("Error fetching leave data:", error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
     return (
       <div>
         <header>
@@ -81,8 +94,9 @@ function HodHome() {
           <table>
             <thead>
               <tr>
-                <th>Name of Faculty</th>
+                <th>Name</th>
                 <th>Department</th>
+                <th>Role</th>
               </tr>
             </thead>
             <tbody>
@@ -90,6 +104,7 @@ function HodHome() {
                 <tr key={person.id}>
                   <td>{person.name}</td>
                   <td>{person.department}</td>
+                  <td>{person.role}</td>
                 </tr>
               ))}
             </tbody>
