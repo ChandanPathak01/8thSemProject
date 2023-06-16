@@ -4,8 +4,8 @@ import Navbar from "./Navbar";
 const ApplyLeave = () => {
   const [leaveData, setLeaveData] = useState({
     leaveType: "",
-    dateFrom: "",
-    dateTo: "",
+    from: "",
+    to: "",
     totalDays: 0,
     reason: ""
   });
@@ -19,10 +19,10 @@ const ApplyLeave = () => {
   };
 
   const calculateTotalDays = () => {
-    const { dateFrom, dateTo } = leaveData;
-    if (dateFrom && dateTo) {
-      const startDate = new Date(dateFrom);
-      const endDate = new Date(dateTo);
+    const { from, to } = leaveData;
+    if (from && to) {
+      const startDate = new Date(from);
+      const endDate = new Date(to);
       const timeDifference = endDate.getTime() - startDate.getTime();
       const totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
       setLeaveData({
@@ -58,23 +58,23 @@ const ApplyLeave = () => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="dateFrom">Date From:</label>
+            <label htmlFor="from">From:</label>
             <input
               type="date"
-              id="dateFrom"
-              name="dateFrom"
-              value={leaveData.dateFrom}
+              id="from"
+              name="from"
+              value={leaveData.from}
               onChange={handleInputChange}
               onBlur={calculateTotalDays}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="dateTo">Date To:</label>
+            <label htmlFor="to">To:</label>
             <input
               type="date"
-              id="dateTo"
-              name="dateTo"
-              value={leaveData.dateTo}
+              id="to"
+              name="to"
+              value={leaveData.to}
               onChange={handleInputChange}
               onBlur={calculateTotalDays}
             />

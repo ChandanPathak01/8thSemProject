@@ -7,6 +7,7 @@ const authRoutes = require('./routes/login');
 const userProfile = require('./routes/profile');
 const userRegRoutes = require('./routes/userRegRoutes');
 const allUser = require('./routes/getUser');
+const leaveApply = require('./routes/applyForLeave')
 
 
 
@@ -39,6 +40,7 @@ app.use('/login', authRoutes);
 app.use('/users', allUser);
 app.use('/userReg', userRegRoutes);
 app.use('/userProfile', userProfile);
+app.use('/leaveApply', leaveApply);
 
 
 app.use((req,res,next)=>{
