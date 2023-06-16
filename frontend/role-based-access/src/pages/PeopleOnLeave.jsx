@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 
 const PeopleOnLeave = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [leaveData, setLeaveData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    // Fetch the leave data from your data source and set it in the leaveData state variable
+    // For example:
+    // const fetchData = async () => {
+    //   const response = await fetch("your-api-endpoint");
+    //   const data = await response.json();
+    //   setLeaveData(data);
+    // };
+    // fetchData();
+  }, []);
 
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch(`http://localhost:8000/leaveList?date=${selectedDate}`);
-      const data = await response.json();
-      setLeaveData(data.pplList);
-    } catch (error) {
-      console.error("Error fetching leave data:", error);
-    }
+    // Filter the leave data based on the selected date
+    const filtered = leaveData.filter((item) => item.date === selectedDate);
+    setFilteredData(filtered);
   };
 
   return (
@@ -40,24 +47,10 @@ const PeopleOnLeave = () => {
         </form>
       </div>
       <div className="people-list">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Department</th>
-              <th>Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaveData.map((person) => (
-              <tr key={person._id}>
-                <td>{person.name}</td>
-                <td>{person.department}</td>
-                <td>{person.role}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {filteredData.map((person) => (
+          <div key={person.id}>{person.name}</div>
+          // Render the list of people on leave based on the filteredData array
+        ))}
       </div>
     </div>
   );
