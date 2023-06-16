@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const DateOnly = require('mongoose-dateonly')(mongoose);
+// const DateOnly = require('mongoose-dateonly')(mongoose);
 
 
 const appliedLeaveSchema = new mongoose.Schema({
@@ -20,11 +20,11 @@ const appliedLeaveSchema = new mongoose.Schema({
     required: true
   },
   from: {
-    type:DateOnly,
+    type:Date,
     required: true
   },
   to: {
-    type: DateOnly,
+    type: Date,
     required: true
   },
   totalDays: {
