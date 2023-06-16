@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 
 const LeaveHistory = () => {
   const [leaveHistory, setLeaveHistory] = useState([]);
@@ -18,7 +18,7 @@ const LeaveHistory = () => {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="leave-history-container">
         <h2>Leave History</h2>
         <table className="leave-history-table">

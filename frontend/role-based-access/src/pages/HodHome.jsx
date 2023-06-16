@@ -21,6 +21,7 @@ function HodHome() {
     const toggleList = () => {
       setShowList(!showList);
     };
+    
   
     const handleFilter = () => {
       // Perform filtering based on the selected date
@@ -81,8 +82,9 @@ function HodHome() {
           <table>
             <thead>
               <tr>
-                <th>Name of Faculty</th>
+                <th>Name </th>
                 <th>Department</th>
+                <th>Role</th>
               </tr>
             </thead>
             <tbody>

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const ApplyLeave = () => {
+
+
+function ApplyLeave  ()  {
   const [leaveData, setLeaveData] = useState({
     leaveType: "",
     from: "",
@@ -17,6 +20,7 @@ const ApplyLeave = () => {
       [name]: value
     });
   };
+  let navigate = useNavigate();
 
   const calculateTotalDays = () => {
     const { from, to } = leaveData;
@@ -34,12 +38,24 @@ const ApplyLeave = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logic to handle form submission
+
+    // Make a POST request to the server
+    axios
+      .post("http://localhost:8000/leaveApply", leaveData)
+      .then((response) => {
+        navigate('/FacultyHome')
+        // Handle the response from the server
+        // console.log(response.data); // You can do something with the response here
+      })
+      .catch((error) => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
   };
 
   return (
     <div>
-      <Navbar />
+     
 
       <div className="form-container">
         <form className="leave-form" onSubmit={handleSubmit}>
