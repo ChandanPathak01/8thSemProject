@@ -7,6 +7,7 @@ const registerUser = async (req, res) => {
   const userDetails = new User({
     _id:new mongoose.Types.ObjectId,
     name:req.body.name,
+    department:req.body.department,
     email:req.body.email,
     password:bcrypt.hashSync(req.body.password, 10),
     role:req.body.role,

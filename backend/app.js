@@ -7,7 +7,8 @@ const authRoutes = require('./routes/login');
 const userProfile = require('./routes/profile');
 const userRegRoutes = require('./routes/userRegRoutes');
 const allUser = require('./routes/getUser');
-const leaveApply = require('./routes/applyForLeave')
+const leaveApply = require('./routes/applyForLeave');
+const leaveList = require('./routes/pplOnTheLeave');
 
 
 
@@ -41,6 +42,7 @@ app.use('/users', allUser);
 app.use('/userReg', userRegRoutes);
 app.use('/userProfile', userProfile);
 app.use('/leaveApply', leaveApply);
+app.use('/leaveList', leaveList);
 
 
 app.use((req,res,next)=>{

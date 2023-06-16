@@ -6,6 +6,8 @@ const appliedLeave = require('../models/appliedLeave');
 const leaveApply = async (req, res) => {
   const apply = new appliedLeave({
     _id:new mongoose.Types.ObjectId,
+    name:req.user.name,
+    department:req.user.department,
     role:req.user.role,
     leaveType:req.body.leaveType,
     from:req.body.from,

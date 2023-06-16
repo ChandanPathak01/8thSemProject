@@ -8,7 +8,7 @@ const userDetails = async (req,res) => {
 res.send({userDetails});    
 } catch (error) {
     console.log(error);
-    res.status(500).send({message: 'error in finding profile'});
+    res.status(500).send({message: 'error in finding users'});
 
 }}
 
