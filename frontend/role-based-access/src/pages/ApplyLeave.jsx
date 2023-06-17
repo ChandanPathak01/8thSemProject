@@ -36,21 +36,29 @@ function ApplyLeave  ()  {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Make a POST request to the server
-    axios
-      .post("http://localhost:8000/leaveApply", leaveData)
-      .then((response) => {
-        navigate('/FacultyHome')
-        // Handle the response from the server
-        // console.log(response.data); // You can do something with the response here
-      })
-      .catch((error) => {
-        // Handle any errors that occur during the request
-        console.error(error);
+
+  
+    
+    try {
+      const response = await fetch("http://localhost:8000/leaveApply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(leaveData),
       });
+  
+      if (response.ok) {
+        // Leave application successful, perform any necessary actions (e.g., show success message, redirect, etc.)
+      } else {
+        // Leave application failed, handle the error (e.g., show error message)
+      }
+    } catch (error) {
+      console.error("Error applying for leave:", error);
+    
   };
 
   return (
@@ -123,5 +131,5 @@ function ApplyLeave  ()  {
     </div>
   );
 };
-
+}
 export default ApplyLeave;
