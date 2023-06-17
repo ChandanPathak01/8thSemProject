@@ -39,28 +39,19 @@ function ApplyLeave  ()  {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
-  
+   
+		axios.post('http://localhost:8000/leaveApply', leaveData, {
+			headers:{
+				
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+			}
     
-    try {
-      const response = await fetch("http://localhost:8000/leaveApply", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(leaveData),
-      });
-  
-      if (response.ok) {
-        // Leave application successful, perform any necessary actions (e.g., show success message, redirect, etc.)
-      } else {
-        // Leave application failed, handle the error (e.g., show error message)
-      }
-    } catch (error) {
-      console.error("Error applying for leave:", error);
-    
-  };
 
+       
+		  }) //yha pe add user ka api hoga
+		.then(response => {
+			navigate('/')
+		})
   return (
     <div>
      
@@ -132,4 +123,5 @@ function ApplyLeave  ()  {
   );
 };
 }
+
 export default ApplyLeave;
