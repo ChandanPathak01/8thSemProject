@@ -1,86 +1,173 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AddUser() {
-	const [data, setData] = useState({
-		name: '',
-		email: '',
+  const [data, setData] = useState({
+    name: '',
+    department: '',
+    role: '',
+    hod: '',
+    contact: '',
+    email: '',
     password: '',
-    // phoneNo:'',
-    role:''
-    // department:''
-	})
-	const navigate = useNavigate()
+  });
+  const navigate = useNavigate();
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const formdata = new FormData();
-		formdata.append("name", data.name);
-		formdata.append("email", data.email);
-		formdata.append("password", data.password);
-		// formdata.append("phoneNo", data.phoneNo);
-		formdata.append("role", data.role);
-    // formdata.append("department",data.department);
-	// 	formdata.append("image", data.image);
-	 const token= localStorage.getItem('token')
-		axios.post('http://localhost:8000/userReg/register', data, {
-			headers:{
-				'Content-Type': 'application/json',
-				'Authorization':`Bearer ${token}`
-			}
-		  }) //yha pe add user ka api hoga
-		.then(response => {
-			navigate('/admin-home')
-		})
-		.catch(err => console.log(err));
-	}
-	return (
-		<div className='d-flex flex-column align-items-center pt-4'>
-			<h2>Add User</h2>
-			<form class="row g-3 w-50" onSubmit={handleSubmit}>
-			<div class="col-12">
-					<label for="inputName" class="form-label">Name</label>
-					<input type="text" class="form-control" id="inputName" placeholder='Enter Name' autoComplete='off'
-					onChange={e => setData({...data, name: e.target.value})}/>
-				</div>
-				<div class="col-12">
-					<label for="inputEmail4" class="form-label">Email</label>
-					<input type="email" class="form-control" id="inputEmail4" placeholder='Enter Email' autoComplete='off'
-					onChange={e => setData({...data, email: e.target.value})}/>
-				</div>
-				<div class="col-12">
-					<label for="inputPassword4" class="form-label">Password</label>
-					<input type="password" class="form-control" id="inputPassword4" placeholder='Enter Password'
-					 onChange={e => setData({...data, password: e.target.value})}/>
-				</div>
-				{/* <div class="col-12">
-					<label for="inputPhoneNo" class="form-label">Phone No</label>
-					<input type="Number" class="form-control" id="inputPhoneNo" placeholder="Enter PhoneNo" autoComplete='off'
-					onChange={e => setData({...data, phoneNo: e.target.value})}/>
-				</div> */}
-				<div class="col-12">
-					<label for="inputRole" class="form-label">Role</label>
-					<input type="text" class="form-control" id="inputRole" placeholder="Enter your Designation" autoComplete='off'
-					onChange={e => setData({...data, role: e.target.value})}/>
-				</div>
-        {/* <div class="col-12">
-					<label for="inputDepartment" class="form-label">Department</label>
-					<input type="text" class="form-control" id="inputDepartment" placeholder="Enter your Department" autoComplete='off'
-					onChange={e => setData({...data, department: e.target.value})}/>
-				</div> */}
-				{/* <div class="col-12 mb-3">
-					<label class="form-label" for="inputGroupFile01">Select Image</label>
-					<input type="file" class="form-control" id="inputGroupFile01"
-					onChange={e => setData({...data, image: e.target.files[0]})}/>
-				</div> */}
-				<div class="col-12">
-					<button type="submit" class="btn btn-primary">Create</button>
-				</div>
-			</form>
-		</div>
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formdata = new FormData();
+    formdata.append('name', data.name);
+    formdata.append('department', data.department);
+    formdata.append('role', data.role);
+    formdata.append('hod', data.hod);
+    formdata.append('contact', data.contact);
+    formdata.append('email', data.email);
+    formdata.append('password', data.password);
+    const token = localStorage.getItem('token');
+    axios
+      .post('http://localhost:8000/userReg/register', data, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        navigate('/admin-home');
+      })
+      .catch((err) => console.log(err));
+  };
 
-	)
+  const handleRoleChange = (e) => {
+    const selectedRole = e.target.value;
+    let updatedHod = '';
+
+    if (selectedRole === 'Faculty') {
+      updatedHod = data.hod; // Preserve the previously selected HOD value if role is still Faculty
+    }
+
+    setData({ ...data, role: selectedRole, hod: updatedHod });
+  };
+
+  const handleHodChange = (e) => {
+    setData({ ...data, hod: e.target.value });
+  };
+
+  return (
+    <div className='d-flex flex-column align-items-center pt-4'>
+      <h2>Add User</h2>
+      <form className='row g-3 w-50' onSubmit={handleSubmit}>
+        <div className='col-12'>
+          <label htmlFor='inputName' className='form-label'>
+            Name
+          </label>
+          <input
+            type='text'
+            className='form-control'
+            id='inputName'
+            placeholder='Enter Name'
+            autoComplete='off'
+            onChange={(e) => setData({ ...data, name: e.target.value })}
+          />
+        </div>
+        <div className='col-12'>
+          <label htmlFor='inputDepartment' className='form-label'>
+            Department
+          </label>
+          <select
+            className='form-select'
+            id='inputDepartment'
+            value={data.department}
+            onChange={(e) => setData({ ...data, department: e.target.value })}
+          >
+            <option value=''>Select Department</option>
+            <option value='IT'>IT</option>
+            <option value='ECE'>ECE</option>
+            <option value='EE'>EE</option>
+            <option value='ME'>ME</option>
+            <option value='CE'>CE</option>
+            <option value='LT'>LT</option>
+            <option value='B.Pharm'>B.Pharm</option>
+          </select>
+        </div>
+        <div className='col-12'>
+          <label htmlFor='inputRole' className='form-label'>
+            Designation
+          </label>
+          <select
+            className='form-select'
+            id='inputRole'
+            value={data.role}
+            onChange={handleRoleChange}
+          >
+            <option value=''>Select Role</option>
+            <option value='Principal'>Principal</option>
+            <option value='HOD'>HOD</option>
+            <option value='Faculty'>Faculty</option>
+          </select>
+        </div>
+        {data.role === 'Faculty' && (
+          <div className='col-12'>
+            <label htmlFor='inputHod' className='form-label'>
+              Department's HOD
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              id='inputHod'
+              placeholder='Enter HOD'
+              autoComplete='off'
+              value={data.hod}
+              onChange={handleHodChange}
+            />
+          </div>
+        )}
+        <div className='col-12'>
+          <label htmlFor='inputPhoneNo' className='form-label'>
+            Contact
+          </label>
+          <input
+            type='Number'
+            className='form-control'
+            id='inputPhoneNo'
+            placeholder='Enter contact number'
+            autoComplete='off'
+            onChange={(e) => setData({ ...data, contact: e.target.value })}
+          />
+        </div>
+        <div className='col-12'>
+          <label htmlFor='inputEmail4' className='form-label'>
+            Email
+          </label>
+          <input
+            type='email'
+            className='form-control'
+            id='inputEmail4'
+            placeholder='Enter Email'
+            autoComplete='off'
+            onChange={(e) => setData({ ...data, email: e.target.value })}
+          />
+        </div>
+        <div className='col-12'>
+          <label htmlFor='inputPassword4' className='form-label'>
+            Password
+          </label>
+          <input
+            type='password'
+            className='form-control'
+            id='inputPassword4'
+            placeholder='Enter Password'
+            onChange={(e) => setData({ ...data, password: e.target.value })}
+          />
+        </div>
+        <div className='col-12'>
+          <button type='submit' className='btn btn-primary'>
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default AddUser;

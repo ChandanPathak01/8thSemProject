@@ -18,19 +18,18 @@ const Login = () => {
     await axios
       .post("http://localhost:8000/login", credentials)
       .then((response) => {
+        localStorage.setItem('token',response.data.token);
+        localStorage.setItem('role',response.data.role);
         if (response.data.role=== "Admin") {
-          localStorage.setItem('token',response.data.token);
-          // localStorage.setItem('userDetails',response.data.userDetails);
-          // setUserData(response.data.userDetails);
           navigate("/admin-home");
         } else if (response.data.role === "Faculty") {
           navigate("/faculty-home");
         }
         else if (response.data.role === "HOD") {
-          navigate("/HodHome");
+          navigate("/hod-home");
         }
         else if (response.data.role === "Principal") {
-          navigate("/");
+          navigate("/principal-home");
         }
       })
       .catch((error) => {

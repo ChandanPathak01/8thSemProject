@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useEffect} from "react";
 import { useRef,useState    } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -23,16 +23,29 @@ function FacultyHome () {
     setShowList(!showList);
   };
 
-  const handleFilter = () => {
-    // Perform filtering based on the selected date
-    const filteredData = leaveData.filter(person => {
-      // Assuming each person has a 'date' property representing the leave date
-      return person.date === selectedDate;
-    });
-  
-    // Update the leaveData state with the filtered data
-    setLeaveData(filteredData);
+  const handleFilter = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/leaveList?date=${selectedDate}`);
+      const data = await response.json();
+      setLeaveData(data.pplList);
+    } catch (error) {
+      console.error("Error fetching leave data:", error);
+    }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/leaveList");
+        const data = await response.json();
+        setLeaveData(data.pplList);
+      } catch (error) {
+        console.error("Error fetching leave data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
    
       <div>
@@ -77,6 +90,7 @@ function FacultyHome () {
             <thead>
               <tr>
                 <th>Name </th>
+                 
                 <th>Department</th>
                 <th>Role</th>
               </tr>
@@ -93,10 +107,10 @@ function FacultyHome () {
           </table>
         </div>
       )}
-      </div>
-      </div>
     </div>
-    );
-};
+    </div>
+    </div>
+  );
+              }
 
 export default FacultyHome;

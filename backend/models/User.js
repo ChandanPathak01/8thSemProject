@@ -9,15 +9,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
   role: {
     type: String,
     enum: ['Admin', 'Principal', 'HOD', 'Faculty'],
@@ -30,6 +21,19 @@ const userSchema = new mongoose.Schema({
       return this.role === 'Faculty';
     }
   },
+  contact: {
+    type: Number,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
 });
 
 const User = mongoose.model('appusers', userSchema);

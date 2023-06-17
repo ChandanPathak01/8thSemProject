@@ -31,7 +31,7 @@ ReactDOM.render(
         <Route path="/ApplyLeave" element={<ApplyLeave />} />
         {/* <Route path="/PeopleOnLeave" element={<PeopleOnLeave/>}/>  */}
         <Route path='/LeaveHistory' element={<LeaveHistory/>}/>
-        <Route path='/HodHome'  element={<HodHome/>}/>
+        <Route path='/hod-home'  element={<HodHome/>}/>
         <Route path='/LeaveRequest' element={<LeaveRequest/>}/>
          
            

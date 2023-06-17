@@ -19,13 +19,13 @@ const leaveApply = async (req, res) => {
   .then(result=>{
       console.log(result);
       res.status(200).json({
-           result
+        message: 'leave applied successfully'
       })
   })
   .catch(err=>{
       console.log(err);
       res.status(500).json({
-          error:err
+          message : 'something went wrong'
       })
   })
 }

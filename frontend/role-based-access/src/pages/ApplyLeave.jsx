@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
-
-function ApplyLeave  ()  {
+function ApplyLeave() {
   const [leaveData, setLeaveData] = useState({
     leaveType: "",
     from: "",
@@ -20,6 +18,7 @@ function ApplyLeave  ()  {
       [name]: value
     });
   };
+
   let navigate = useNavigate();
 
   const calculateTotalDays = () => {
@@ -28,7 +27,7 @@ function ApplyLeave  ()  {
       const startDate = new Date(from);
       const endDate = new Date(to);
       const timeDifference = endDate.getTime() - startDate.getTime();
-      const totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+      const totalDays = (Math.ceil(timeDifference / (1000 * 60 * 60 * 24)))+1;
       setLeaveData({
         ...leaveData,
         totalDays
@@ -38,24 +37,33 @@ function ApplyLeave  ()  {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    console.log(role);
+    // console.log(token);
+    axios
+      .post('http://localhost:8000/leaveApply', leaveData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        }
+      })
+      .then(response => {
+        alert(response.data.message);
+        if (role==='Faculty'){
+        navigate('/faculty-home');
+      }
+      else if (role==='HOD'){
+        navigate('/hod-home');
+      }
+      else {
+        navigate('/principal-home');
+      }
+      });
+  };
 
-   
-		axios.post('http://localhost:8000/leaveApply', leaveData, {
-			headers:{
-				
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-			}
-    
-
-       
-		  }) //yha pe add user ka api hoga
-		.then(response => {
-			navigate('/')
-		})
   return (
     <div>
-     
-
       <div className="form-container">
         <form className="leave-form" onSubmit={handleSubmit}>
           <div className="form-group">
@@ -121,7 +129,6 @@ function ApplyLeave  ()  {
       </div>
     </div>
   );
-};
 }
 
 export default ApplyLeave;
