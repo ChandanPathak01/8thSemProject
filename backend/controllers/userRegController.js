@@ -7,8 +7,8 @@ const registerUser = async (req, res) => {
   const userDetails = new User({
     _id:new mongoose.Types.ObjectId,
     name:req.body.name,
-    department:req.body.department,
     role:req.body.role,
+    department:req.body.department,
     hod:req.body.hod,
     contact:req.body.contact,
     email:req.body.email,

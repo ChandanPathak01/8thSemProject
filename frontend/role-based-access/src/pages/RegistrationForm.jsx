@@ -1,13 +1,13 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function AddUser() {
   const [data, setData] = useState({
     name: '',
-    department: '',
     role: '',
     hod: '',
+    department: '',
     contact: '',
     email: '',
     password: '',
@@ -18,9 +18,9 @@ function AddUser() {
     event.preventDefault();
     const formdata = new FormData();
     formdata.append('name', data.name);
-    formdata.append('department', data.department);
     formdata.append('role', data.role);
     formdata.append('hod', data.hod);
+    formdata.append('department', data.department);
     formdata.append('contact', data.contact);
     formdata.append('email', data.email);
     formdata.append('password', data.password);
@@ -41,12 +41,14 @@ function AddUser() {
   const handleRoleChange = (e) => {
     const selectedRole = e.target.value;
     let updatedHod = '';
+    let updatedDepartment = '';
 
-    if (selectedRole === 'Faculty') {
-      updatedHod = data.hod; // Preserve the previously selected HOD value if role is still Faculty
+    if (selectedRole === 'Faculty' || selectedRole === 'HOD') {
+      updatedHod = data.hod;
+      updatedDepartment = data.department;
     }
 
-    setData({ ...data, role: selectedRole, hod: updatedHod });
+    setData({ ...data, role: selectedRole, hod: updatedHod, department: updatedDepartment });
   };
 
   const handleHodChange = (e) => {
@@ -71,26 +73,6 @@ function AddUser() {
           />
         </div>
         <div className='col-12'>
-          <label htmlFor='inputDepartment' className='form-label'>
-            Department
-          </label>
-          <select
-            className='form-select'
-            id='inputDepartment'
-            value={data.department}
-            onChange={(e) => setData({ ...data, department: e.target.value })}
-          >
-            <option value=''>Select Department</option>
-            <option value='IT'>IT</option>
-            <option value='ECE'>ECE</option>
-            <option value='EE'>EE</option>
-            <option value='ME'>ME</option>
-            <option value='CE'>CE</option>
-            <option value='LT'>LT</option>
-            <option value='B.Pharm'>B.Pharm</option>
-          </select>
-        </div>
-        <div className='col-12'>
           <label htmlFor='inputRole' className='form-label'>
             Designation
           </label>
@@ -106,7 +88,29 @@ function AddUser() {
             <option value='Faculty'>Faculty</option>
           </select>
         </div>
-        {data.role === 'Faculty' && (
+        {(data.role === 'Faculty' || data.role === 'HOD') && (
+          <div className='col-12'>
+            <label htmlFor='inputDepartment' className='form-label'>
+              Department
+            </label>
+            <select
+              className='form-select'
+              id='inputDepartment'
+              value={data.department}
+              onChange={(e) => setData({ ...data, department: e.target.value })}
+            >
+              <option value=''>Select Department</option>
+              <option value='IT'>IT</option>
+              <option value='ECE'>ECE</option>
+              <option value='EE'>EE</option>
+              <option value='ME'>ME</option>
+              <option value='CE'>CE</option>
+              <option value='LT'>LT</option>
+              <option value='B.Pharm'>B.Pharm</option>
+            </select>
+          </div>
+        )}
+        {data.role === 'Faculty'  && (
           <div className='col-12'>
             <label htmlFor='inputHod' className='form-label'>
               Department's HOD
@@ -127,7 +131,7 @@ function AddUser() {
             Contact
           </label>
           <input
-            type='Number'
+            type='number'
             className='form-control'
             id='inputPhoneNo'
             placeholder='Enter contact number'

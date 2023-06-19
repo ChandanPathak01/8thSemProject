@@ -16,6 +16,7 @@ import ApplyLeave from './pages/ApplyLeave';
 import LeaveHistory from './pages/LeaveHistory';
 import HodHome from './pages/HodHome';
 import LeaveRequest from './pages/LeaveRequest';
+import PrincipalHome from './pages/PrincipalHome';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -32,6 +33,7 @@ ReactDOM.render(
         {/* <Route path="/PeopleOnLeave" element={<PeopleOnLeave/>}/>  */}
         <Route path='/LeaveHistory' element={<LeaveHistory/>}/>
         <Route path='/hod-home'  element={<HodHome/>}/>
+        <Route path='/principal-home'  element={<PrincipalHome/>}/>
         <Route path='/LeaveRequest' element={<LeaveRequest/>}/>
          
            

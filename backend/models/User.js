@@ -5,14 +5,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  department: {
-    type: String,
-    required: true
-  },
   role: {
     type: String,
     enum: ['Admin', 'Principal', 'HOD', 'Faculty'],
     default: 'Faculty'
+  },
+  department: {
+    type: String,
+    required: function () {
+      return this.role === 'Faculty' || this.role === 'HOD';
+    },
+    default: ''
   },
   hod: {
     type: String,
