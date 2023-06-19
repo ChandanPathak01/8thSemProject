@@ -12,30 +12,81 @@ function AddUser() {
     email: '',
     password: '',
   });
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    let formIsValid = true;
+    const newErrors = {};
+
+    if (!data.name.trim()) {
+      formIsValid = false;
+      newErrors.name = 'Name is required';
+    }
+
+    if (!data.role) {
+      formIsValid = false;
+      newErrors.role = 'Role is required';
+    }
+
+    if ((data.role === 'Faculty' || data.role === 'HOD') && !data.department) {
+      formIsValid = false;
+      newErrors.department = 'Department is required';
+    }
+
+    if (data.role === 'Faculty' && !data.hod.trim()) {
+      formIsValid = false;
+      newErrors.hod = 'HOD is required';
+    }
+
+    if (!data.contact.trim()) {
+      formIsValid = false;
+      newErrors.contact = 'Contact is required';
+    }
+
+    if (!data.email.trim()) {
+      formIsValid = false;
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(data.email)) {
+      formIsValid = false;
+      newErrors.email = 'Enter a valid email address';
+    }
+
+    if (!data.password.trim()) {
+      formIsValid = false;
+      newErrors.password = 'Password is required';
+    } else if (!/(?=.*[A-Z])/.test(data.password)) {
+      formIsValid = false;
+      newErrors.password = 'Password must contain at least one uppercase letter';
+    } else if (!/(?=.*[a-z])/.test(data.password)) {
+      formIsValid = false;
+      newErrors.password = 'Password must contain at least one lowercase letter';
+    } else if (!/(?=.*[!@#$%^&*])/.test(data.password)) {
+      formIsValid = false;
+      newErrors.password = 'Password must contain at least one special character';
+    }
+
+    setErrors(newErrors);
+    return formIsValid;
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formdata = new FormData();
-    formdata.append('name', data.name);
-    formdata.append('role', data.role);
-    formdata.append('hod', data.hod);
-    formdata.append('department', data.department);
-    formdata.append('contact', data.contact);
-    formdata.append('email', data.email);
-    formdata.append('password', data.password);
-    const token = localStorage.getItem('token');
-    axios
-      .post('http://localhost:8000/userReg/register', data, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        navigate('/admin-home');
-      })
-      .catch((err) => console.log(err));
+
+    if (validateForm()) {
+      const token = localStorage.getItem('token');
+      axios
+        .post('http://localhost:8000/userReg/register', data, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          navigate('/admin-home');
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const handleRoleChange = (e) => {
@@ -65,19 +116,20 @@ function AddUser() {
           </label>
           <input
             type='text'
-            className='form-control'
+            className={`form-control ${errors.name && 'is-invalid'}`}
             id='inputName'
             placeholder='Enter Name'
             autoComplete='off'
             onChange={(e) => setData({ ...data, name: e.target.value })}
           />
+          {errors.name && <div className='invalid-feedback'>{errors.name}</div>}
         </div>
         <div className='col-12'>
           <label htmlFor='inputRole' className='form-label'>
             Designation
           </label>
           <select
-            className='form-select'
+            className={`form-select ${errors.role && 'is-invalid'}`}
             id='inputRole'
             value={data.role}
             onChange={handleRoleChange}
@@ -87,6 +139,7 @@ function AddUser() {
             <option value='HOD'>HOD</option>
             <option value='Faculty'>Faculty</option>
           </select>
+          {errors.role && <div className='invalid-feedback'>{errors.role}</div>}
         </div>
         {(data.role === 'Faculty' || data.role === 'HOD') && (
           <div className='col-12'>
@@ -94,7 +147,7 @@ function AddUser() {
               Department
             </label>
             <select
-              className='form-select'
+              className={`form-select ${errors.department && 'is-invalid'}`}
               id='inputDepartment'
               value={data.department}
               onChange={(e) => setData({ ...data, department: e.target.value })}
@@ -108,22 +161,24 @@ function AddUser() {
               <option value='LT'>LT</option>
               <option value='B.Pharm'>B.Pharm</option>
             </select>
+            {errors.department && <div className='invalid-feedback'>{errors.department}</div>}
           </div>
         )}
-        {data.role === 'Faculty'  && (
+        {data.role === 'Faculty' && (
           <div className='col-12'>
             <label htmlFor='inputHod' className='form-label'>
               Department's HOD
             </label>
             <input
               type='text'
-              className='form-control'
+              className={`form-control ${errors.hod && 'is-invalid'}`}
               id='inputHod'
               placeholder='Enter HOD'
               autoComplete='off'
               value={data.hod}
               onChange={handleHodChange}
             />
+            {errors.hod && <div className='invalid-feedback'>{errors.hod}</div>}
           </div>
         )}
         <div className='col-12'>
@@ -132,12 +187,13 @@ function AddUser() {
           </label>
           <input
             type='number'
-            className='form-control'
+            className={`form-control ${errors.contact && 'is-invalid'}`}
             id='inputPhoneNo'
             placeholder='Enter contact number'
             autoComplete='off'
             onChange={(e) => setData({ ...data, contact: e.target.value })}
           />
+          {errors.contact && <div className='invalid-feedback'>{errors.contact}</div>}
         </div>
         <div className='col-12'>
           <label htmlFor='inputEmail4' className='form-label'>
@@ -145,12 +201,13 @@ function AddUser() {
           </label>
           <input
             type='email'
-            className='form-control'
+            className={`form-control ${errors.email && 'is-invalid'}`}
             id='inputEmail4'
             placeholder='Enter Email'
             autoComplete='off'
             onChange={(e) => setData({ ...data, email: e.target.value })}
           />
+          {errors.email && <div className='invalid-feedback'>{errors.email}</div>}
         </div>
         <div className='col-12'>
           <label htmlFor='inputPassword4' className='form-label'>
@@ -158,11 +215,12 @@ function AddUser() {
           </label>
           <input
             type='password'
-            className='form-control'
+            className={`form-control ${errors.password && 'is-invalid'}`}
             id='inputPassword4'
             placeholder='Enter Password'
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
+          {errors.password && <div className='invalid-feedback'>{errors.password}</div>}
         </div>
         <div className='col-12'>
           <button type='submit' className='btn btn-primary'>

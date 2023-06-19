@@ -90,7 +90,6 @@ function FacultyHome () {
             <thead>
               <tr>
                 <th>Name </th>
-                 
                 <th>Department</th>
                 <th>Role</th>
               </tr>

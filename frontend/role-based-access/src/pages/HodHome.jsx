@@ -75,7 +75,7 @@ function HodHome() {
           Leave Request
         </Link>
          
-
+     
   
     <div className="leave-list">
       <button onClick={toggleList}>People on Leave</button>
@@ -96,7 +96,6 @@ function HodHome() {
             <thead>
               <tr>
                 <th>Name </th>
-                 
                 <th>Department</th>
                 <th>Role</th>
               </tr>
