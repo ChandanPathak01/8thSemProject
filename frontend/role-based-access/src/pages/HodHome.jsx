@@ -53,6 +53,7 @@ function HodHome() {
           <h3>LMS</h3>
           <nav ref={navRef}>
             <Link to="/">Leave History</Link>
+            <Link to="/Profile">Profile</Link>
             <a href="/" onClick={handleLogout}  >
               Logout
             </a>

@@ -27,7 +27,7 @@ function ApplyLeave() {
       const startDate = new Date(from);
       const endDate = new Date(to);
       const timeDifference = endDate.getTime() - startDate.getTime();
-      const totalDays = (Math.ceil(timeDifference / (1000 * 60 * 60 * 24)))+1;
+      const totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) + 1;
       setLeaveData({
         ...leaveData,
         totalDays
@@ -50,17 +50,17 @@ function ApplyLeave() {
       })
       .then(response => {
         alert(response.data.message);
-        if (role==='Faculty'){
-        navigate('/faculty-home');
-      }
-      else if (role==='HOD'){
-        navigate('/hod-home');
-      }
-      else {
-        navigate('/principal-home');
-      }
+        if (role === 'Faculty') {
+          navigate('/faculty-home');
+        } else if (role === 'HOD') {
+          navigate('/hod-home');
+        } else {
+          navigate('/principal-home');
+        }
       });
   };
+
+  const isReasonValid = leaveData.reason.trim().split(/\s+/).length <= 100;
 
   return (
     <div>
@@ -120,7 +120,13 @@ function ApplyLeave() {
               name="reason"
               value={leaveData.reason}
               onChange={handleInputChange}
+              className={!isReasonValid ? "invalid" : ""}
             ></textarea>
+            {!isReasonValid && (
+              <div className="error-message">
+                Reason should not exceed 100 words.
+              </div>
+            )}
           </div>
           <button type="submit" className="submit-button">
             Submit

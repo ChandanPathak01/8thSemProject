@@ -6,7 +6,7 @@ import App from './App';
 import AdminHome from './pages/AdminHome';
 import reportWebVitals from './reportWebVitals';
 import UserPage from './pages/UserPage';
- 
+import Profile from './pages/Profile';
 import ManageUser from './pages/ManageUser';
 import RegistrationForm from './pages/RegistrationForm';
 import Login from './pages/Login';
@@ -35,6 +35,7 @@ ReactDOM.render(
         <Route path='/hod-home'  element={<HodHome/>}/>
         <Route path='/principal-home'  element={<PrincipalHome/>}/>
         <Route path='/LeaveRequest' element={<LeaveRequest/>}/>
+        <Route path='/Profile' element={<Profile/>}/>
          
            
            

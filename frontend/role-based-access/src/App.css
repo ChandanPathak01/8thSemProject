@@ -316,3 +316,33 @@ button:last-child {
 .leave-list-container tbody tr:hover {
   background-color: #e6e6e6;
 }
+.profile-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.profile-details {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.profile-field {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.profile-field span {
+  font-weight: bold;
+  width: 120px;
+}
+
+.loading-message {
+  margin-top: 20px;
+  text-align: center;
+}
