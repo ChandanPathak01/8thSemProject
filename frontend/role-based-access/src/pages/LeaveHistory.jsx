@@ -11,8 +11,7 @@ const LeaveHistory = () => {
     // const fetchLeaveHistory = async () => {
     //   const response = await fetch("your-api-endpoint");
     //   const data = await response.json();
-    //   setLeaveHistory(data);
-    // };
+     // };
     // fetchLeaveHistory();
   }, []);
 

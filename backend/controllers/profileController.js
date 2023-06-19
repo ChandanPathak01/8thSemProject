@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 const profile = async (req, res) => {
     try{
-    email = req.User.email
+    email = req.user.email
     const details = await User.find({email: email}, 'name email role -_id');
 res.send({results:details});
 } catch (error) {

@@ -15,6 +15,13 @@ const appliedLeaveSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  hod: {
+    type: String,
+    default: '',
+    required: function () {
+      return this.role === 'Faculty';
+    }
+  },
   leaveType: {
     type: String,
     required: true
