@@ -12,6 +12,7 @@ const leaveApply = async (req, res) => {
       hod:req.user.hod,
       department:req.user.department,
       role:req.user.role,
+      hodStatus:'Pending',
       leaveType:req.body.leaveType,
       from:req.body.from,
       to:req.body.to,

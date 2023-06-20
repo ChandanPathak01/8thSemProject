@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const leaveList = require('../models/appliedLeave')
 
-const facultyRequest = async (req, res) => {
+const hodApproved = async (req, res) => {
     try{
-    hodName = req.user.name;
     // console.log(leaveList);
     // console.log(hodName);
-    const details = await leaveList.find({hod: hodName, hodStatus:"Pending"  }, 'name department -_id');
+    const details = await leaveList.find({ hodStatus:"Verified", status:"Pending" }, 'name department -_id');
     res.send({details});
 } catch (error) {
     console.log(error);
@@ -14,4 +13,4 @@ const facultyRequest = async (req, res) => {
 
 }}
 
-module.exports = {facultyRequest};
+module.exports = {hodApproved};

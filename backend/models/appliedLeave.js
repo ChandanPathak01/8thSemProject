@@ -44,7 +44,7 @@ const appliedLeaveSchema = new mongoose.Schema({
   },
   hodStatus: {
     type: String,
-    default: 'Pending',
+    default: '',
     required: function () {
       return this.role === 'Faculty';
     }

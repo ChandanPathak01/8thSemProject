@@ -52,7 +52,7 @@ function FacultyHome () {
         <header>
           <h3>LMS</h3>
           <nav ref={navRef}>
-            <Link to="/">Leave History</Link>
+            <Link to="/leaveHistory">Leave History</Link>
             <Link to="/Profile">Profie </Link>
             <a href="/" onClick={handleLogout}  >
               Logout

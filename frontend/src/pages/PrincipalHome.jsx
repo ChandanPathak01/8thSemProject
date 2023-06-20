@@ -68,10 +68,10 @@ function HodHome() {
         </header>
         <h1 class="center-heading">Welcome to Principal Dashboard</h1>
     <div className="button-container">
-        <Link to="/LeaveRequest" className="apply-button">
+        <Link to="/hodRequest" className="apply-button">
           HOD Leave Request
         </Link>
-        <Link to="/FacultyRequest" className="apply-button">
+        <Link to="/hodApproved" className="apply-button">
           Faculty Leave Request
         </Link>
          

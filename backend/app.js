@@ -10,7 +10,9 @@ const allUser = require('./routes/getUser');
 const leaveApply = require('./routes/applyForLeave');
 const leaveList = require('./routes/pplOnTheLeave');
 const facultyRequest = require('./routes/facultyRequest');
-
+const hodRequest = require('./routes/hodRequest');
+const hodApproved = require('./routes/hodApproved');
+const leaveHistory = require('./routes/leaveHistory');
 
 
 
@@ -45,7 +47,9 @@ app.use('/userProfile', userProfile);
 app.use('/leaveApply', leaveApply);
 app.use('/leaveList', leaveList);
 app.use('/facultyRequest', facultyRequest);
-
+app.use('/hodRequest', hodRequest);
+app.use('/hodApproved', hodApproved);
+app.use('/leaveHistory', leaveHistory);
 
 app.use((req,res,next)=>{
   res.status(404).json({
