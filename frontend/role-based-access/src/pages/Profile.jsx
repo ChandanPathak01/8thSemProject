@@ -23,6 +23,7 @@ function ProfilePage() {
   }, []);
 
   return (
+    
     <div className="profile-page">
       <h2>Profile Page</h2>
       {profileData ? (

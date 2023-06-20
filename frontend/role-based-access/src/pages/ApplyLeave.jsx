@@ -11,12 +11,24 @@ function ApplyLeave() {
     reason: ""
   });
 
+  const [isDateValid, setIsDateValid] = useState(true);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    if (name === "from" && value) {
+      const currentDate = new Date().toISOString().split("T")[0];
+      if (value < currentDate) {
+        alert("Invalid date selection. Please select a date from today or onwards.");
+        return;
+      }
+    }
     setLeaveData({
       ...leaveData,
       [name]: value
     });
+    if (name === "from" || name === "to") {
+      setIsDateValid(true);
+    }
   };
 
   let navigate = useNavigate();
@@ -26,12 +38,18 @@ function ApplyLeave() {
     if (from && to) {
       const startDate = new Date(from);
       const endDate = new Date(to);
-      const timeDifference = endDate.getTime() - startDate.getTime();
-      const totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) + 1;
-      setLeaveData({
-        ...leaveData,
-        totalDays
-      });
+
+      if (endDate >= startDate) {
+        const timeDifference = endDate.getTime() - startDate.getTime();
+        const totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+        setLeaveData({
+          ...leaveData,
+          totalDays
+        });
+        setIsDateValid(true);
+      } else {
+        setIsDateValid(false);
+      }
     }
   };
 
@@ -39,8 +57,7 @@ function ApplyLeave() {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-    console.log(role);
-    // console.log(token);
+
     axios
       .post('http://localhost:8000/leaveApply', leaveData, {
         headers: {
@@ -61,6 +78,8 @@ function ApplyLeave() {
   };
 
   const isReasonValid = leaveData.reason.trim().split(/\s+/).length <= 100;
+
+  const isSubmitDisabled = leaveData.from && leaveData.to && !isDateValid;
 
   return (
     <div>
@@ -89,6 +108,7 @@ function ApplyLeave() {
               value={leaveData.from}
               onChange={handleInputChange}
               onBlur={calculateTotalDays}
+              min={new Date().toISOString().split("T")[0]}
             />
           </div>
           <div className="form-group">
@@ -100,6 +120,7 @@ function ApplyLeave() {
               value={leaveData.to}
               onChange={handleInputChange}
               onBlur={calculateTotalDays}
+              min={leaveData.from || new Date().toISOString().split("T")[0]}
             />
           </div>
           <div className="form-group">
@@ -128,7 +149,7 @@ function ApplyLeave() {
               </div>
             )}
           </div>
-          <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button" disabled={isSubmitDisabled}>
             Submit
           </button>
         </form>

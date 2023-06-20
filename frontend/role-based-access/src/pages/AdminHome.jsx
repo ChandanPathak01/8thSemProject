@@ -26,7 +26,7 @@ function AdminHome() {
         setData(res.data.userDetails);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, );
   
 
 
