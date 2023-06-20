@@ -3,16 +3,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
  
- 
-
 
 function LeaveRequestTable() {
   const [leaveRequests, setLeaveRequests] = useState([]);
+<<<<<<< Updated upstream
   const navigate = useNavigate();
+=======
+  const token = localStorage.getItem("token");
+>>>>>>> Stashed changes
   useEffect(() => {
     const token = localStorage.getItem('token');
     const role = localStorage.getItem("role");
     axios
+<<<<<<< Updated upstream
       .get("http://localhost:8000/facultyRequest",leaveRequests, {
         headers: {
           'Content-Type': 'application/json',
@@ -30,6 +33,20 @@ function LeaveRequestTable() {
       else {
         navigate('/principal-home');
       }
+=======
+      .get("http://localhost:8000/facultyRequest",
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        }
+      }) // Replace with your backend route URL
+      .then((response) => {
+        setLeaveRequests(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+>>>>>>> Stashed changes
       });
   }, []);
 
