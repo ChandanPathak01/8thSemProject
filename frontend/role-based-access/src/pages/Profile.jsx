@@ -15,12 +15,12 @@ function ProfilePage() {
       },
     })
       .then(res => {
-        setProfileData(res.data);
+        setProfileData(res.data.details);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [profileData]);
+  }, []);
 
   return (
     <div className="profile-page">
@@ -36,6 +36,10 @@ function ProfilePage() {
             <span>{profileData.department}</span>
           </div>
           <div className="profile-field">
+            <span>Email Id:</span>
+            <span>{profileData.email}</span>
+          </div>
+          <div className="profile-field">
             <span>Role:</span>
             <span>{profileData.role}</span>
           </div>
@@ -43,10 +47,7 @@ function ProfilePage() {
             <span>Contact No:</span>
             <span>{profileData.contactNo}</span>
           </div>
-          <div className="profile-field">
-            <span>College Name:</span>
-            <span>{profileData.collegeName}</span>
-          </div>
+           
         </div>
       ) : (
         <div className="loading-message">Loading profile data...</div>
