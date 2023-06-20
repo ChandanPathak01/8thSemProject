@@ -46,10 +46,10 @@ function LeaveRequestTable() {
         <tbody>
           {leaveRequests.map((request) => (
             <tr key={request.id}>
-              <td>{request.facultyName}</td>
+              <td>{request.name}</td>
               <td>{request.department}</td>
               <td>
-                {request.status === "pending" ? (
+                 
                   <div>
                     <button onClick={() => handleAction(request.id, "approved")}>
                       Approve
@@ -58,9 +58,9 @@ function LeaveRequestTable() {
                       Deny
                     </button>
                   </div>
-                ) : (
-                  <span>{request.status}</span>
-                )}
+                   
+                   
+                
               </td>
             </tr>
           ))}
