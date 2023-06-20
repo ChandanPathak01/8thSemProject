@@ -1,54 +1,24 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
- 
 
 function LeaveRequestTable() {
   const [leaveRequests, setLeaveRequests] = useState([]);
-<<<<<<< Updated upstream
-  const navigate = useNavigate();
-=======
   const token = localStorage.getItem("token");
->>>>>>> Stashed changes
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const role = localStorage.getItem("role");
-    axios
-<<<<<<< Updated upstream
-      .get("http://localhost:8000/facultyRequest",leaveRequests, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }) // Replace with your backend route URL
+    // Fetch name and department data from the route
+    axios.get("http://localhost:8000/facultyRequest",{
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
       .then(response => {
-        alert(response.data.message);
-        if (role==='Faculty'){
-        navigate('/faculty-home');
-      }
-      else if (role==='HOD'){
-        navigate('/hod-home');
-      }
-      else {
-        navigate('/principal-home');
-      }
-=======
-      .get("http://localhost:8000/facultyRequest",
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        }
-      }) // Replace with your backend route URL
-      .then((response) => {
-        setLeaveRequests(response.data);
+        setLeaveRequests(response.data.details);
       })
-      .catch((error) => {
-        console.log(error);
->>>>>>> Stashed changes
+      .catch(error => {
+        console.error("Error fetching leave requests:", error);
       });
-  }, []);
+  }, []); // Empty dependency array to run the effect only once on component mount
 
   const handleAction = (id, action) => {
     // Update the status of the leave request with the provided ID
