@@ -65,8 +65,8 @@ function AdminHome() {
               <tr>
                 <th>Name</th>
                 <th>Email</th>
-                {/* <th>PhoneNo</th>
-                <th>Designation</th>
+                <th>Contact</th>
+                {/* <th>Designation</th>
                 <th>Department</th> */}
                 <th>Role</th>
                 {/* <th>Password</th> */}
@@ -78,6 +78,7 @@ function AdminHome() {
                   <tr key={index}>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
+                    <td>{user.contact}</td>
                     <td>{user.role}</td>
                     {/* <td>{user.PhoneNo}</td>
                     <td>{user.Department}</td>

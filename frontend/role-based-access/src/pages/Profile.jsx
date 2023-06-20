@@ -3,12 +3,12 @@ import axios from 'axios';
  
 
 function ProfilePage() {
-  const [profileData, setProfileData] = useState(null);
+  const [profileData, setProfileData] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     
-    axios.get('http://localhost:8000/userProfile', {
+    axios.get('http://localhost:8000/userProfile',{
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -16,6 +16,7 @@ function ProfilePage() {
     })
       .then(res => {
         setProfileData(res.data.details);
+        
       })
       .catch(err => {
         console.log(err);
@@ -46,7 +47,7 @@ function ProfilePage() {
           </div>
           <div className="profile-field">
             <span>Contact No:</span>
-            <span>{profileData.contactNo}</span>
+            <span>{profileData.contact}</span>
           </div>
            
         </div>

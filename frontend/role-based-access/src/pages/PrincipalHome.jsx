@@ -71,7 +71,7 @@ function HodHome() {
         <Link to="/LeaveRequest" className="apply-button">
           HOD Leave Request
         </Link>
-        <Link to="/LeaveRequest" className="apply-button">
+        <Link to="/FacultyRequest" className="apply-button">
           Faculty Leave Request
         </Link>
          

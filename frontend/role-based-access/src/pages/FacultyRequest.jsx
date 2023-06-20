@@ -20,7 +20,7 @@ function LeaveRequestTable() {
       .catch((error) => {
         console.error("Error fetching leave requests:", error);
       });
-  }, );
+  }, []);
 
   const handleAction = (id, action) => {
     setIsButtonDisabled(true); // Disable both buttons
