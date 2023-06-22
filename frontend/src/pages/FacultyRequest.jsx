@@ -3,7 +3,7 @@ import axios from "axios";
 
 function LeaveRequestTable() {
   const [leaveRequests, setLeaveRequests] = useState([]);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [disabledRows, setDisabledRows] = useState([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -23,16 +23,32 @@ function LeaveRequestTable() {
   }, []);
 
   const handleAction = (id, action) => {
-    setIsButtonDisabled(true); // Disable both buttons
-
     const updatedRequests = leaveRequests.map((request) => {
-      if (request.id === id) {
-        return { ...request, status: action };
+      if (request._id === id) {
+        return { ...request, hodStatus: action };
       }
       return request;
     });
 
-    setLeaveRequests(updatedRequests);
+    setDisabledRows((prevDisabledRows) => [...prevDisabledRows, id]);
+
+    axios
+      .put(
+        `http://localhost:8000/verify`,
+        { status: action, id: id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setLeaveRequests(updatedRequests);
+      })
+      .catch((error) => {
+        console.error("Error updating leave status:", error);
+      });
   };
 
   return (
@@ -48,21 +64,21 @@ function LeaveRequestTable() {
         </thead>
         <tbody>
           {leaveRequests.map((request) => (
-            <tr key={request.id}>
+            <tr key={request._id}>
               <td>{request.name}</td>
               <td>{request.department}</td>
               <td>
                 <div>
                   <button
-                    onClick={() => handleAction(request.id, "approved")}
-                    disabled={isButtonDisabled}
+                    onClick={() => handleAction(request._id, "Verified")}
+                    disabled={disabledRows.includes(request._id)}
                     style={{ backgroundColor: "green" }}
                   >
                     Approve
                   </button>
                   <button
-                    onClick={() => handleAction(request.id, "denied")}
-                    disabled={isButtonDisabled}
+                    onClick={() => handleAction(request._id, "Denied")}
+                    disabled={disabledRows.includes(request._id)}
                     style={{ backgroundColor: "red" }}
                   >
                     Deny

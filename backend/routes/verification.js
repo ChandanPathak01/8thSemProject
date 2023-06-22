@@ -5,6 +5,6 @@ const { authenticateUser } = require('../middleware/authMiddleware');
 
 
 // Register a new user by admin
-router.post('/', authenticateUser, verification.verify);
+router.put('/', authenticateUser, verification.updateLeaveStatus);
 
 module.exports = router;
