@@ -20,8 +20,8 @@ app.use(cors({
   origin:"*"
 }))
 
-
-mongoose.connect('mongodb+srv://8thSemBackend:achs1234@cluster0.9oc3ala.mongodb.net/8thSem');
+const url = 'mongodb+srv://8thSemBackend:achs1234@cluster0.9oc3ala.mongodb.net/8thSem?retryWrites=true&w=majority'
+mongoose.connect(url);
 mongoose.connection.on('error',err=>{
   console.log('Connection failed')
 });
@@ -29,6 +29,7 @@ mongoose.connection.on('error',err=>{
 mongoose.connection.on('connected',conncted=>{
   console.log('Database Connected')
 });
+
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
