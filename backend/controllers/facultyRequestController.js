@@ -6,7 +6,7 @@ const facultyRequest = async (req, res) => {
     hodName = req.user.name;
     // console.log(leaveList);
     // console.log(hodName);
-    const details = await leaveList.find({hod: hodName, hodStatus:"Pending"  }, 'name department -_id');
+    const details = await leaveList.find({hod: hodName, hodStatus:"Pending"  }, 'name department');
     res.send({details});
 } catch (error) {
     console.log(error);

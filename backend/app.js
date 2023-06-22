@@ -13,6 +13,7 @@ const facultyRequest = require('./routes/facultyRequest');
 const hodRequest = require('./routes/hodRequest');
 const hodApproved = require('./routes/hodApproved');
 const leaveHistory = require('./routes/leaveHistory');
+const verification = require('./routes/verification');
 
 
 
@@ -51,6 +52,7 @@ app.use('/facultyRequest', facultyRequest);
 app.use('/hodRequest', hodRequest);
 app.use('/hodApproved', hodApproved);
 app.use('/leaveHistory', leaveHistory);
+app.use('/verify', verification);
 
 app.use((req,res,next)=>{
   res.status(404).json({
