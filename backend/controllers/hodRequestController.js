@@ -5,7 +5,7 @@ const hodRequest = async (req, res) => {
     try{
     // console.log(leaveList);
     // console.log(hodName);
-    const details = await leaveList.find({role: "HOD", status:"Pending"  }, 'name department -_id');
+    const details = await leaveList.find({role: "HOD", status:"Pending"  }, 'name department');
     res.send({details});
 } catch (error) {
     console.log(error);

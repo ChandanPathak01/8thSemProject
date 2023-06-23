@@ -3,8 +3,8 @@ const User = require('../models/User');
 
 const profile = async (req, res) => {
     try{
-    email = req.user.email
-    const details = await User.find({email: email}, 'name department role contact email -_id');
+    id = req.user._id
+    const details = await User.find({_id: id}, 'name department role contact email -_id');
 res.send({details});
 } catch (error) {
     console.log(error);

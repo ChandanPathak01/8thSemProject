@@ -13,7 +13,7 @@ const updateLeaveStatus = async (req, res) => {
         }
         else{await leaveList.findByIdAndUpdate(id, { hodStatus: status });}
     }
-    if (role === 'Principal'){await leaveList.findByIdAndUpdate(id, { status: status });}
+    else{await leaveList.findByIdAndUpdate(id, { status: status });}
     res.status(200).send({ message: "Leave status updated successfully." });
   } catch (error) {
     console.log(error);

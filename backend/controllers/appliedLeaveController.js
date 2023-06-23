@@ -8,6 +8,7 @@ const leaveApply = async (req, res) => {
   if (req.user.role=='Faculty'){
     const apply = new appliedLeave({
       _id:new mongoose.Types.ObjectId,
+      userId:req.user._id,
       name:req.user.name,
       hod:req.user.hod,
       department:req.user.department,
@@ -37,6 +38,7 @@ const leaveApply = async (req, res) => {
   else{
   const apply = new appliedLeave({
     _id:new mongoose.Types.ObjectId,
+    userId:req.user._id,
     name:req.user.name,
     department:req.user.department,
     role:req.user.role,
