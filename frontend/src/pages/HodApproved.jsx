@@ -59,6 +59,7 @@ function LeaveRequestTable() {
           <tr>
             <th>Faculty Name</th>
             <th>Department</th>
+            <th>Reason</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -67,6 +68,7 @@ function LeaveRequestTable() {
             <tr key={request._id}>
               <td>{request.name}</td>
               <td>{request.department}</td>
+              <td>{request.reason}</td>
               <td>
                 <div>
                   <button
