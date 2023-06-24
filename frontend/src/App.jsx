@@ -15,8 +15,9 @@ import FacultyRequest from './pages/FacultyRequest';
 import HodRequest from './pages/HodRequest';
 import HodApproved from './pages/HodApproved';
 import PrincipalHome from './pages/PrincipalHome';
+import Navbar from "./pages/Navbar";
 // import ProtectedRoute from './ProtectedRoute';
-
+ 
 
  
 
@@ -25,7 +26,9 @@ function App() {
      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+         
         <Route path="/admin-home" element={<AdminHome />} />
+        <Route path="/Navbar" element={<Navbar/>}/>
         <Route path="/ManageUser" element={<ManageUser />} />
         <Route path="/RegistrationForm" element={<RegistrationForm />} />
         <Route path="/UserPage" element={<UserPage />} />
