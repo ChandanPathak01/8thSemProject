@@ -28,6 +28,7 @@ function ProfilePage() {
   }, [profileData]);
 
   return (
+    
     <div className="profile-page">
       <h2>Profile Page</h2>
       {loading ? (

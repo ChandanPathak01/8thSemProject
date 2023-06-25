@@ -5,7 +5,7 @@ import { FaBars } from "react-icons/fa"
 import { ImCross } from "react-icons/im"
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const NavbarFac = () => {
   const [Mobile, setMobile] = useState(false)
 
   const navigate = useNavigate();
@@ -23,8 +23,12 @@ const Navbar = () => {
         if mobile screen ma xa bhane nav-links-mobile add huxa
         */}
         <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
-          <Link to='/' className='home'>
-            <li>People On Leave</li>
+        <Link to='/ProfileFac' className='skills'>
+            <li>Profile</li>
+          </Link>
+
+          <Link to='/LeaveHistory' className='home'>
+            <li>Leave History</li>
           </Link>
            
           <Link to='/' className='skills' onClick={handleLogout}>
@@ -42,4 +46,4 @@ const Navbar = () => {
     </>
   )
 }
-export default Navbar
+export default NavbarFac

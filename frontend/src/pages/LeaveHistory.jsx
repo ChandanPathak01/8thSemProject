@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FaBars } from "react-icons/fa"
+import { ImCross } from "react-icons/im"
+import { Link, useNavigate } from "react-router-dom";
 
 const LeaveHistory = () => {
   const [leaveHistory, setLeaveHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("role");
+  const [Mobile, setMobile] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/Login');
+  }
 
   useEffect(() => {
     const fetchLeaveHistory = async () => {
@@ -25,7 +36,7 @@ const LeaveHistory = () => {
     };
 
     fetchLeaveHistory();
-  }, []);
+  }, );
 
   const renderColumns = () => {
     if (userRole === "Faculty") {
@@ -69,6 +80,23 @@ const LeaveHistory = () => {
 
   return (
     <div>
+      <nav className='navbar'>
+        <h3 className='logo'>LMS</h3>
+        <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
+          <Link to='/faculty-home' className='skills' key="home">
+            <li>Home</li>
+          </Link>
+          <Link to='/ProfileFac' className='home' key="leave-history">
+            <li>Profile</li>
+          </Link>
+          <Link to='/' className='skills' onClick={handleLogout} key="logout">
+            <li>Logout</li>
+          </Link>
+        </ul>
+        <button className='mobile-menu-icon' onClick={() => setMobile(!Mobile)}>
+          {Mobile ? <ImCross /> : <FaBars />}
+        </button>
+      </nav>
       <div className="leave-history-container">
         <h2>Leave History</h2>
         {loading ? (
