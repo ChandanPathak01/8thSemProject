@@ -3,7 +3,6 @@ import React from 'react';
 import {  Routes, Route, BrowserRouter } from "react-router-dom";
 import AdminHome from './pages/AdminHome';
 import UserPage from './pages/UserPage';
-import Profile from './pages/Profile';
 import ProfileFac from "./pages/ProfileFac";
 import ManageUser from './pages/ManageUser';
 import RegistrationForm from './pages/RegistrationForm';
@@ -19,7 +18,10 @@ import PrincipalHome from './pages/PrincipalHome';
 import Navbar from "./pages/Navbar";
 import NavbarFac from "./pages/NavbarFac";
 // import ProtectedRoute from './ProtectedRoute';
+import ProfileHod from './pages/ProfileHod';
+import HodLeaveHistory from './pages/HodLeaveHistory';
  
+import ProfilePri from './pages/ProfilePri';
 
  
 
@@ -44,8 +46,11 @@ function App() {
         <Route path='/FacultyRequest' element={<FacultyRequest/>}/>
         <Route path='/hodRequest' element={<HodRequest/>}/>
         <Route path='/hodApproved' element={<HodApproved/>}/>
-        <Route path='/Profile' element={<Profile/>}/>
         <Route path="/ProfileFac" element={<ProfileFac/>}/>
+        <Route path="/ProfileHod" element={<ProfileHod/>}/>
+        <Route path="/HodLeaveHistory" element={<HodLeaveHistory/>}/>
+        <Route path="/ProfilePri" element={<ProfilePri/>}/>
+         
       </Routes>
     </BrowserRouter>
   );

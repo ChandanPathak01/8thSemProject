@@ -158,7 +158,7 @@ textarea {
 
 .submit-button {
   padding: 10px 20px;
-  background-color: #7979b3;
+  background-color: #8585a8;
   color: #fff;
   font-size: 16px;
   border: none;
@@ -218,7 +218,7 @@ button:last-child {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #c4cfd3;
+  background-color:rgb(242, 242, 250);
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   margin-top: 10px;
@@ -374,7 +374,7 @@ button:last-child {
   border-radius: 5px;
   text-align: center;
   margin-top: 100px;
-  background-color: #d1e9fd;
+  background-color: #fafcfd;
 }
 
 .leave-history-container h2 {

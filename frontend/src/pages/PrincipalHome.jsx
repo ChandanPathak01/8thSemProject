@@ -1,15 +1,19 @@
 import React from "react";
-import { useRef,useState, useEffect    } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { useState, useEffect    } from "react";
+import { FaBars} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+ 
+import { ImCross } from "react-icons/im"
+ 
 
 function HodHome() {
-    const navRef = useRef();
+     
     const navigate = useNavigate();
   
-    const showNavbar = () => {
-      navRef.current.classList.toggle("responsive_nav");
-    };
+    const [Mobile, setMobile] = useState(false)
+
+     
+     
     const handleLogout = () => {
       localStorage.removeItem('token');
       navigate('/Login');
@@ -49,23 +53,31 @@ function HodHome() {
 
     return (
       <div>
-        <header>
-          <h3>LMS</h3>
-          <nav ref={navRef}>
-            {/* <Link to="/">Leave History</Link> */}
-            <a href="/" onClick={handleLogout}  >
-              Logout
-            </a>
-            <button
-              className="nav-btn nav-close-btn"
-              onClick={showNavbar}>
-              <FaTimes />
-            </button>
-          </nav>
-          <button className="nav-btn" onClick={showNavbar}>
-            <FaBars />
-          </button>
-        </header>
+         <nav className='navbar'>
+        <h3 className='logo'>LMS</h3>
+        {/*
+        if large screen ma xa bhane Mobile add huxa
+        if mobile screen ma xa bhane nav-links-mobile add huxa
+        */}
+        <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
+        <Link to='/ProfilePri' className='skills'>
+            <li>Profile</li>
+          </Link>
+
+          
+           
+          <Link to='/' className='skills' onClick={handleLogout}>
+            <li>Logout</li>
+          </Link>
+           
+        </ul>
+        {/* 
+        whenever we click on button = setMobile(!Mobile) ==  is mobile oppsite to setMobile 
+        */}
+        <button className='mobile-menu-icon' onClick={() => setMobile(!Mobile)}>
+          {Mobile ? <ImCross /> : <FaBars />}
+        </button>
+      </nav>
         <h1 class="center-heading">Welcome to Principal Dashboard</h1>
     <div className="button-container">
         <Link to="/hodRequest" className="apply-button">
