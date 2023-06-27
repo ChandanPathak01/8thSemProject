@@ -10,6 +10,7 @@ function AddUser() {
     department: '',
     contact: '',
     email: '',
+    biometricId: '',
     password: '',
   });
   const [errors, setErrors] = useState({});
@@ -64,6 +65,14 @@ function AddUser() {
     } else if (!/(?=.*[!@#$%^&*])/.test(data.password)) {
       formIsValid = false;
       newErrors.password = 'Password must contain at least one special character';
+    }
+
+    if (!data.biometricId.trim()) {
+      formIsValid = false;
+      newErrors.biometricId = 'Biometric ID is required';
+    } else if (!/^\d+$/.test(data.biometricId)) {
+      formIsValid = false;
+      newErrors.biometricId = 'Biometric ID should be a number';
     }
 
     setErrors(newErrors);
@@ -196,35 +205,50 @@ function AddUser() {
           {errors.contact && <div className='invalid-feedback'>{errors.contact}</div>}
         </div>
         <div className='col-12'>
-          <label htmlFor='inputEmail4' className='form-label'>
+          <label htmlFor='inputEmail' className='form-label'>
             Email
           </label>
           <input
             type='email'
             className={`form-control ${errors.email && 'is-invalid'}`}
-            id='inputEmail4'
-            placeholder='Enter Email'
+            id='inputEmail'
+            placeholder='Enter email'
             autoComplete='off'
             onChange={(e) => setData({ ...data, email: e.target.value })}
           />
           {errors.email && <div className='invalid-feedback'>{errors.email}</div>}
         </div>
         <div className='col-12'>
-          <label htmlFor='inputPassword4' className='form-label'>
+          <label htmlFor='inputBiometricId' className='form-label'>
+            Biometric ID
+          </label>
+          <input
+            type='Number'
+            className={`form-control ${errors.biometricId && 'is-invalid'}`}
+            id='inputBiometricId'
+            placeholder='Enter biometric ID'
+            autoComplete='off'
+            onChange={(e) => setData({ ...data, biometricId: e.target.value })}
+          />
+          {errors.biometricId && <div className='invalid-feedback'>{errors.biometricId}</div>}
+        </div>
+        <div className='col-12'>
+          <label htmlFor='inputPassword' className='form-label'>
             Password
           </label>
           <input
             type='password'
             className={`form-control ${errors.password && 'is-invalid'}`}
-            id='inputPassword4'
-            placeholder='Enter Password'
+            id='inputPassword'
+            placeholder='Enter password'
+            autoComplete='off'
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
           {errors.password && <div className='invalid-feedback'>{errors.password}</div>}
         </div>
         <div className='col-12'>
           <button type='submit' className='btn btn-primary'>
-            Register
+            Add User
           </button>
         </div>
       </form>

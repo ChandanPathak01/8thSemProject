@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { FaBars} from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { ImCross } from "react-icons/im"
 function LeaveRequestTable() {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [disabledRows, setDisabledRows] = useState([]);
@@ -20,7 +22,7 @@ function LeaveRequestTable() {
       .catch((error) => {
         console.error("Error fetching leave requests:", error);
       });
-  }, []);
+  }, );
 
   const handleAction = (id, action) => {
     const updatedRequests = leaveRequests.map((request) => {
@@ -50,8 +52,41 @@ function LeaveRequestTable() {
         console.error("Error updating leave status:", error);
       });
   };
+  const navigate = useNavigate();
+  
+    const [Mobile, setMobile] = useState(false)
+
+     
+     
+    const handleLogout = () => {
+      localStorage.removeItem('token');
+      navigate('/Login');
+    }
 
   return (
+    <>
+    <nav className='navbar'>
+    <h3 className='logo'>LMS</h3>
+    {/*
+    if large screen ma xa bhane Mobile add huxa
+    if mobile screen ma xa bhane nav-links-mobile add huxa
+    */}
+    <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
+    <Link to='/principal-home' className='skills'>
+        <li>Home</li>
+      </Link>
+      <Link to='/' className='skills' onClick={handleLogout}>
+        <li>Logout</li>
+      </Link>
+       
+    </ul>
+    {/* 
+    whenever we click on button = setMobile(!Mobile) ==  is mobile oppsite to setMobile 
+    */}
+    <button className='mobile-menu-icon' onClick={() => setMobile(!Mobile)}>
+      {Mobile ? <ImCross /> : <FaBars />}
+    </button>
+  </nav> 
     <div className="leave-request-table">
       <h2>Leave Requests</h2>
       <table>
@@ -74,14 +109,14 @@ function LeaveRequestTable() {
                   <button
                     onClick={() => handleAction(request._id, "Verified")}
                     disabled={disabledRows.includes(request._id)}
-                    style={{ backgroundColor: "green" }}
+                    style={{ backgroundColor: "lightgreen" , color:"white"}}
                   >
                     Approve
                   </button>
                   <button
                     onClick={() => handleAction(request._id, "Denied")}
                     disabled={disabledRows.includes(request._id)}
-                    style={{ backgroundColor: "red" }}
+                    style={{ backgroundColor: "lightred", color:"white" }}
                   >
                     Deny
                   </button>
@@ -92,6 +127,7 @@ function LeaveRequestTable() {
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 

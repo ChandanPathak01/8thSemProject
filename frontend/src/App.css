@@ -128,12 +128,13 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+   
 }
 
 .leave-form {
   width: 400px;
   padding: 20px;
-  background-color: #f1f1f1;
+  background-color: #cbd1d0;
   border-radius: 5px;
 }
 
@@ -152,18 +153,22 @@ input,
 textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #161010;
   border-radius: 5px;
 }
 
 .submit-button {
   padding: 10px 20px;
-  background-color: #8585a8;
+  background-color: #05057e;
   color: #fff;
   font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.submit-button:hover{
+  color: rgb(247, 247, 185);
 }
 .center-heading {
   text-align: center;

@@ -12,6 +12,7 @@ const registerUser = async (req, res) => {
     hod:req.body.hod,
     contact:req.body.contact,
     email:req.body.email,
+    biometricId:req.body.biometricId,
     password:bcrypt.hashSync(req.body.password, 10)
   })
   userDetails.save()

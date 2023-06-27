@@ -46,6 +46,18 @@ const appliedLeaveSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  noticeNo: {
+    type: String,
+    required: true
+  },
+  addressDuringLeave: {
+    type: String,
+    required: true
+  },
+  additionalDutyArrangement: {
+    type: String,
+    required: true
+  },
   hodStatus: {
     type: String,
     default: '',

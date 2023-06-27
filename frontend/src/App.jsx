@@ -20,7 +20,7 @@ import NavbarFac from "./pages/NavbarFac";
 // import ProtectedRoute from './ProtectedRoute';
 import ProfileHod from './pages/ProfileHod';
 import HodLeaveHistory from './pages/HodLeaveHistory';
- 
+import ApplyLeaveHod from './pages/ApplyLeaveHod';
 import ProfilePri from './pages/ProfilePri';
 
  
@@ -50,6 +50,7 @@ function App() {
         <Route path="/ProfileHod" element={<ProfileHod/>}/>
         <Route path="/HodLeaveHistory" element={<HodLeaveHistory/>}/>
         <Route path="/ProfilePri" element={<ProfilePri/>}/>
+        <Route path="/ApplyLeaveHod" element={<ApplyLeaveHod/>}/>
          
       </Routes>
     </BrowserRouter>

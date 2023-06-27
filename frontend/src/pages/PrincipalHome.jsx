@@ -27,20 +27,16 @@ function HodHome() {
     };
     
   
-    const handleFilter = async () => {
-      try {
-        const response = await fetch(`http://localhost:8000/leaveList?date=${selectedDate}`);
-        const data = await response.json();
-        setLeaveData(data.pplList);
-      } catch (error) {
-        console.error("Error fetching leave data:", error);
-      }
-    };
+     
   
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch("http://localhost:8000/leaveList");
+          let url = "http://localhost:8000/leaveList";
+          if (selectedDate) {
+            url += `?date=${selectedDate}`;
+          }
+          const response = await fetch(url);
           const data = await response.json();
           setLeaveData(data.pplList);
         } catch (error) {
@@ -49,7 +45,7 @@ function HodHome() {
       };
   
       fetchData();
-    }, []);
+    }, [selectedDate]);
 
     return (
       <div>
@@ -89,42 +85,40 @@ function HodHome() {
          
 
   
-    <div className="leave-list">
-      <button onClick={toggleList}>People on Leave</button>
-      {showList && (
-        <div className="leave-list-container">
-          <h2>List of People on Leave</h2>
-          <div className="filter-container">
-            <label htmlFor="dateFilter">Filter by Date:</label>
-            <input
-              type="date"
-              id="dateFilter"
-              value={selectedDate}
-              onChange={event => setSelectedDate(event.target.value)}
-            />
-            <button onClick={handleFilter}>Apply</button>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Name </th>
-                <th>Department</th>
-                <th>Role</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leaveData.map(person => (
-                <tr key={person.id}>
-                  <td>{person.name}</td>
-                  <td>{person.department}</td>
-                  <td>{person.role}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="leave-list">
+          <button onClick={toggleList}>People on Leave</button>
+          {showList && (
+            <div className="leave-list-container">
+              <h2>List of People on Leave</h2>
+              <div className="filter-container">
+                <input
+                  type="date"
+                  id="dateFilter"
+                  value={selectedDate}
+                  onChange={event => setSelectedDate(event.target.value)}
+                />
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {leaveData.map(person => (
+                    <tr key={person.id}>
+                      <td>{person.name}</td>
+                      <td>{person.department}</td>
+                      <td>{person.role}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
-      )}
-    </div>
     </div>
     </div>
   );

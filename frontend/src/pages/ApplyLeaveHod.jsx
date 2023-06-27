@@ -109,10 +109,10 @@ function ApplyLeave() {
       <nav className="navbar">
         <h3 className="logo">LMS</h3>
         <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
-          <Link to="/faculty-home" className="skills" key="home">
+          <Link to="/hod-home" className="skills" key="home">
             <li>Home</li>
           </Link>
-          <Link to="/LeaveHistory" className="home" key="leave-history">
+          <Link to="/HodLeaveHistory" className="home" key="leave-history">
             <li>Leave History</li>
           </Link>
           <Link to="/" className="skills" onClick={handleLogout} key="logout">

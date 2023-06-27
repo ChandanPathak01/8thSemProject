@@ -46,7 +46,10 @@ const leaveApply = async (req, res) => {
     from:req.body.from,
     to:req.body.to,
     totalDays:req.body.totalDays,
-    reason:req.body.reason
+    reason:req.body.reason,
+    noticeNo:req.body.noticeNo,
+    addressDuringLeave:req.body.addressDuringLeave,
+    additionalDutyArrangement:req.body.additionalDutyArrangement
   })
   apply.save()
   .then(result=>{
