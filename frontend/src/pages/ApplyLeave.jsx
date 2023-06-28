@@ -138,7 +138,7 @@ function ApplyLeave() {
               <option value="sick">SL</option>
               <option value="annual">DL</option>
               <option value="personal">Casual Leave (CL)</option>
-              <option value="personal">Compansatory Leave (CL)</option>
+              <option value="compansatory">Compansatory Leave (CL)</option>
             </select>
           </div>
           <div className="form-group">
@@ -202,7 +202,7 @@ function ApplyLeave() {
               name="noticeNo"
               value={leaveData.noticeNo}
               onChange={handleInputChange}
-              required // Added required attribute
+               // Added required attribute
             />
           </div>
           <div className="form-group">
@@ -213,7 +213,7 @@ function ApplyLeave() {
               name="addressDuringLeave"
               value={leaveData.addressDuringLeave}
               onChange={handleInputChange}
-              required // Added required attribute
+                // Added required attribute
             />
           </div>
           <div className="form-group">
@@ -224,7 +224,7 @@ function ApplyLeave() {
               name="additionalDutyArrangement"
               value={leaveData.additionalDutyArrangement}
               onChange={handleInputChange}
-              required // Added required attribute
+               // Added required attribute
             />
           </div>
           <button type="submit" className="submit-button" disabled={isSubmitDisabled}>

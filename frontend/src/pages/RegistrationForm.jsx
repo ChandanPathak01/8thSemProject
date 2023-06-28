@@ -162,13 +162,15 @@ function AddUser() {
               onChange={(e) => setData({ ...data, department: e.target.value })}
             >
               <option value=''>Select Department</option>
-              <option value='IT'>IT</option>
-              <option value='ECE'>ECE</option>
-              <option value='EE'>EE</option>
-              <option value='ME'>ME</option>
-              <option value='CE'>CE</option>
-              <option value='LT'>LT</option>
-              <option value='B.Pharm'>B.Pharm</option>
+              <option value='IT'>Information Technology</option>
+              <option value='ECE'>Electronics and Communication Engg.</option>
+              <option value='EE'>Electrical Engineering</option>
+              <option value='ME'>Mechanical Engineering</option>
+              <option value='CE'>Civil Engineering</option>
+              <option value='LT'>Leather Technology</option>
+              <option value='AS&H'>Applied-Science-and-Humanities</option>
+              <option value='B.Pharm'>Pharmacy</option>
+
             </select>
             {errors.department && <div className='invalid-feedback'>{errors.department}</div>}
           </div>

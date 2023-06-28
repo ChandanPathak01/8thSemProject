@@ -104,14 +104,14 @@ function LeaveRequestTable() {
                   <button
                     onClick={() => handleAction(request._id, "Verified")}
                     disabled={disabledRows.includes(request._id)}
-                    style={{ backgroundColor: "lightgreen"  , color:"white"}}
+                    style={{ backgroundColor: "lightgreen"  , color:"black"}}
                   >
                     Approve
                   </button>
                   <button
                     onClick={() => handleAction(request._id, "Denied")}
                     disabled={disabledRows.includes(request._id)}
-                    style={{ backgroundColor: "lightred", color:"white" }}
+                    style={{ backgroundColor: "red", color:"black" }}
                   >
                     Deny
                   </button>

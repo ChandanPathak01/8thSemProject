@@ -48,15 +48,15 @@ const appliedLeaveSchema = new mongoose.Schema({
   },
   noticeNo: {
     type: String,
-    required: true
+    required: false
   },
   addressDuringLeave: {
     type: String,
-    required: true
+    required: false
   },
   additionalDutyArrangement: {
     type: String,
-    required: true
+    required: false
   },
   hodStatus: {
     type: String,
