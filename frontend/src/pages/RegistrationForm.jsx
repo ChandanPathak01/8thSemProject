@@ -116,140 +116,156 @@ function AddUser() {
   };
 
   return (
-    <div className='d-flex flex-column align-items-center pt-4'>
+    <div className="d-flex flex-column align-items-center pt-4">
       <h2>Add User</h2>
-      <form className='row g-3 w-50' onSubmit={handleSubmit}>
-        <div className='col-12'>
-          <label htmlFor='inputName' className='form-label'>
+      <form className="row g-3 w-50" onSubmit={handleSubmit}>
+        <div className="col-12">
+          <label htmlFor="inputName" className="form-label">
             Name
           </label>
           <input
-            type='text'
-            className={`form-control ${errors.name && 'is-invalid'}`}
-            id='inputName'
-            placeholder='Enter Name'
-            autoComplete='off'
+            type="text"
+            className={`form-control ${errors.name && "is-invalid"}`}
+            id="inputName"
+            placeholder="Enter Name"
+            autoComplete="off"
             onChange={(e) => setData({ ...data, name: e.target.value })}
           />
-          {errors.name && <div className='invalid-feedback'>{errors.name}</div>}
+          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
         </div>
-        <div className='col-12'>
-          <label htmlFor='inputRole' className='form-label'>
+        <div className="col-12">
+          <label htmlFor="inputRole" className="form-label">
             Designation
           </label>
           <select
-            className={`form-select ${errors.role && 'is-invalid'}`}
-            id='inputRole'
+            className={`form-select ${errors.role && "is-invalid"}`}
+            id="inputRole"
             value={data.role}
             onChange={handleRoleChange}
           >
-            <option value=''>Select Role</option>
-            <option value='Principal'>Principal</option>
-            <option value='HOD'>HOD</option>
-            <option value='Faculty'>Faculty</option>
+            <option value="">Select Role</option>
+            <option value="Principal">Principal</option>
+            <option value="HOD">HOD</option>
+            <option value="Faculty">Faculty</option>
           </select>
-          {errors.role && <div className='invalid-feedback'>{errors.role}</div>}
+          {errors.role && <div className="invalid-feedback">{errors.role}</div>}
         </div>
-        {(data.role === 'Faculty' || data.role === 'HOD') && (
-          <div className='col-12'>
-            <label htmlFor='inputDepartment' className='form-label'>
+        {(data.role === "Faculty" || data.role === "HOD") && (
+          <div className="col-12">
+            <label htmlFor="inputDepartment" className="form-label">
               Department
             </label>
             <select
-              className={`form-select ${errors.department && 'is-invalid'}`}
-              id='inputDepartment'
+              className={`form-select ${errors.department && "is-invalid"}`}
+              id="inputDepartment"
               value={data.department}
               onChange={(e) => setData({ ...data, department: e.target.value })}
             >
-              <option value=''>Select Department</option>
-              <option value='IT'>Information Technology</option>
-              <option value='ECE'>Electronics and Communication Engg.</option>
-              <option value='EE'>Electrical Engineering</option>
-              <option value='ME'>Mechanical Engineering</option>
-              <option value='CE'>Civil Engineering</option>
-              <option value='LT'>Leather Technology</option>
-              <option value='AS&H'>Applied-Science-and-Humanities</option>
-              <option value='B.Pharm'>Pharmacy</option>
-
+              <option value="">Select Department</option>
+              <option value="IT">Information Technology</option>
+              <option value="ECE">Electronics and Communication Engg.</option>
+              <option value="EE">Electrical Engineering</option>
+              <option value="ME">Mechanical Engineering</option>
+              <option value="CE">Civil Engineering</option>
+              <option value="LT">Leather Technology</option>
+              <option value="AS&H">Applied-Science-and-Humanities</option>
+              <option value="B.Pharm">Pharmacy</option>
             </select>
-            {errors.department && <div className='invalid-feedback'>{errors.department}</div>}
+            {errors.department && (
+              <div className="invalid-feedback">{errors.department}</div>
+            )}
           </div>
         )}
-        {data.role === 'Faculty' && (
-          <div className='col-12'>
-            <label htmlFor='inputHod' className='form-label'>
+        {data.role === "Faculty" && (
+          <div className="col-12">
+            <label htmlFor="inputHod" className="form-label">
               Department's HOD
             </label>
-            <input
-              type='text'
-              className={`form-control ${errors.hod && 'is-invalid'}`}
-              id='inputHod'
-              placeholder='Enter HOD'
-              autoComplete='off'
+            <select
+              className={`form-select ${errors.hod && "is-invalid"}`}
+              id="inputHod"
               value={data.hod}
               onChange={handleHodChange}
-            />
-            {errors.hod && <div className='invalid-feedback'>{errors.hod}</div>}
+            >
+              <option value="">Select HOD</option>
+              <option value="itHod">Vijay Kumar</option>
+              <option value="as&hHod">Dr. Ashutosh Kumar</option>
+              <option value="eeHod">Dr. Yagya Nand Sharma</option>
+              <option value="meHod">Md. Irshad Alam</option>
+              <option value="bmrHod">Dr. Umar Farqque</option>
+              <option value="eceHod">Mr. Shadb Rabbani</option>
+              <option value="pharmacyHod">Dr. Sanjay Kumar</option>
+              <option value="ltHod">Dr. Sanjay Kumar Choudhary</option>
+            </select>
+            {errors.hod && <div className="invalid-feedback">{errors.hod}</div>}
           </div>
         )}
-        <div className='col-12'>
-          <label htmlFor='inputPhoneNo' className='form-label'>
+        <div className="col-12">
+          <label htmlFor="inputPhoneNo" className="form-label">
             Contact
           </label>
           <input
-            type='number'
-            className={`form-control ${errors.contact && 'is-invalid'}`}
-            id='inputPhoneNo'
-            placeholder='Enter contact number'
-            autoComplete='off'
+            type="number"
+            className={`form-control ${errors.contact && "is-invalid"}`}
+            id="inputPhoneNo"
+            placeholder="Enter contact number"
+            autoComplete="off"
             onChange={(e) => setData({ ...data, contact: e.target.value })}
           />
-          {errors.contact && <div className='invalid-feedback'>{errors.contact}</div>}
+          {errors.contact && (
+            <div className="invalid-feedback">{errors.contact}</div>
+          )}
         </div>
-        <div className='col-12'>
-          <label htmlFor='inputEmail' className='form-label'>
+        <div className="col-12">
+          <label htmlFor="inputEmail" className="form-label">
             Email
           </label>
           <input
-            type='email'
-            className={`form-control ${errors.email && 'is-invalid'}`}
-            id='inputEmail'
-            placeholder='Enter email'
-            autoComplete='off'
+            type="email"
+            className={`form-control ${errors.email && "is-invalid"}`}
+            id="inputEmail"
+            placeholder="Enter email"
+            autoComplete="off"
             onChange={(e) => setData({ ...data, email: e.target.value })}
           />
-          {errors.email && <div className='invalid-feedback'>{errors.email}</div>}
+          {errors.email && (
+            <div className="invalid-feedback">{errors.email}</div>
+          )}
         </div>
-        <div className='col-12'>
-          <label htmlFor='inputBiometricId' className='form-label'>
+        <div className="col-12">
+          <label htmlFor="inputBiometricId" className="form-label">
             Biometric ID
           </label>
           <input
-            type='Number'
-            className={`form-control ${errors.biometricId && 'is-invalid'}`}
-            id='inputBiometricId'
-            placeholder='Enter biometric ID'
-            autoComplete='off'
+            type="Number"
+            className={`form-control ${errors.biometricId && "is-invalid"}`}
+            id="inputBiometricId"
+            placeholder="Enter biometric ID"
+            autoComplete="off"
             onChange={(e) => setData({ ...data, biometricId: e.target.value })}
           />
-          {errors.biometricId && <div className='invalid-feedback'>{errors.biometricId}</div>}
+          {errors.biometricId && (
+            <div className="invalid-feedback">{errors.biometricId}</div>
+          )}
         </div>
-        <div className='col-12'>
-          <label htmlFor='inputPassword' className='form-label'>
+        <div className="col-12">
+          <label htmlFor="inputPassword" className="form-label">
             Password
           </label>
           <input
-            type='password'
-            className={`form-control ${errors.password && 'is-invalid'}`}
-            id='inputPassword'
-            placeholder='Enter password'
-            autoComplete='off'
+            type="password"
+            className={`form-control ${errors.password && "is-invalid"}`}
+            id="inputPassword"
+            placeholder="Enter password"
+            autoComplete="off"
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
-          {errors.password && <div className='invalid-feedback'>{errors.password}</div>}
+          {errors.password && (
+            <div className="invalid-feedback">{errors.password}</div>
+          )}
         </div>
-        <div className='col-12'>
-          <button type='submit' className='btn btn-primary'>
+        <div className="col-12">
+          <button type="submit" className="btn btn-primary">
             Add User
           </button>
         </div>
