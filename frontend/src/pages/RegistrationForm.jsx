@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function AddUser() {
   const [data, setData] = useState({
-    name: '',
-    role: '',
-    hod: '',
-    department: '',
-    contact: '',
-    email: '',
-    biometricId: '',
-    password: '',
+    name: "",
+    role: "",
+    hod: "",
+    department: "",
+    contact: "",
+    email: "",
+    biometricId: "",
+    password: "",
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -22,57 +22,60 @@ function AddUser() {
 
     if (!data.name.trim()) {
       formIsValid = false;
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
 
     if (!data.role) {
       formIsValid = false;
-      newErrors.role = 'Role is required';
+      newErrors.role = "Role is required";
     }
 
-    if ((data.role === 'Faculty' || data.role === 'HOD') && !data.department) {
+    if ((data.role === "Faculty" || data.role === "HOD") && !data.department) {
       formIsValid = false;
-      newErrors.department = 'Department is required';
+      newErrors.department = "Department is required";
     }
 
-    if (data.role === 'Faculty' && !data.hod.trim()) {
+    if (data.role === "Faculty" && !data.hod.trim()) {
       formIsValid = false;
-      newErrors.hod = 'HOD is required';
+      newErrors.hod = "HOD is required";
     }
 
     if (!data.contact.trim()) {
       formIsValid = false;
-      newErrors.contact = 'Contact is required';
+      newErrors.contact = "Contact is required";
     }
 
     if (!data.email.trim()) {
       formIsValid = false;
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(data.email)) {
       formIsValid = false;
-      newErrors.email = 'Enter a valid email address';
+      newErrors.email = "Enter a valid email address";
     }
 
     if (!data.password.trim()) {
       formIsValid = false;
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
     } else if (!/(?=.*[A-Z])/.test(data.password)) {
       formIsValid = false;
-      newErrors.password = 'Password must contain at least one uppercase letter';
+      newErrors.password =
+        "Password must contain at least one uppercase letter";
     } else if (!/(?=.*[a-z])/.test(data.password)) {
       formIsValid = false;
-      newErrors.password = 'Password must contain at least one lowercase letter';
+      newErrors.password =
+        "Password must contain at least one lowercase letter";
     } else if (!/(?=.*[!@#$%^&*])/.test(data.password)) {
       formIsValid = false;
-      newErrors.password = 'Password must contain at least one special character';
+      newErrors.password =
+        "Password must contain at least one special character";
     }
 
     if (!data.biometricId.trim()) {
       formIsValid = false;
-      newErrors.biometricId = 'Biometric ID is required';
+      newErrors.biometricId = "Biometric ID is required";
     } else if (!/^\d+$/.test(data.biometricId)) {
       formIsValid = false;
-      newErrors.biometricId = 'Biometric ID should be a number';
+      newErrors.biometricId = "Biometric ID should be a number";
     }
 
     setErrors(newErrors);
@@ -83,16 +86,16 @@ function AddUser() {
     event.preventDefault();
 
     if (validateForm()) {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       axios
-        .post('http://localhost:8000/userReg/register', data, {
+        .post("http://localhost:8000/userReg/register", data, {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
-          navigate('/admin-home');
+          navigate("/admin-home");
         })
         .catch((err) => console.log(err));
     }
@@ -100,15 +103,20 @@ function AddUser() {
 
   const handleRoleChange = (e) => {
     const selectedRole = e.target.value;
-    let updatedHod = '';
-    let updatedDepartment = '';
+    let updatedHod = "";
+    let updatedDepartment = "";
 
-    if (selectedRole === 'Faculty' || selectedRole === 'HOD') {
+    if (selectedRole === "Faculty" || selectedRole === "HOD") {
       updatedHod = data.hod;
       updatedDepartment = data.department;
     }
 
-    setData({ ...data, role: selectedRole, hod: updatedHod, department: updatedDepartment });
+    setData({
+      ...data,
+      role: selectedRole,
+      hod: updatedHod,
+      department: updatedDepartment,
+    });
   };
 
   const handleHodChange = (e) => {
@@ -181,22 +189,16 @@ function AddUser() {
             <label htmlFor="inputHod" className="form-label">
               Department's HOD
             </label>
-            <select
-              className={`form-select ${errors.hod && "is-invalid"}`}
+
+            <input
+              type="text"
+              className={`form-control ${errors.hod && "is-invalid"}`}
               id="inputHod"
+              placeholder="Enter HOD"
+              autoComplete="off"
               value={data.hod}
               onChange={handleHodChange}
-            >
-              <option value="">Select HOD</option>
-              <option value="itHod">Vijay Kumar</option>
-              <option value="as&hHod">Dr. Ashutosh Kumar</option>
-              <option value="eeHod">Dr. Yagya Nand Sharma</option>
-              <option value="meHod">Md. Irshad Alam</option>
-              <option value="bmrHod">Dr. Umar Farqque</option>
-              <option value="eceHod">Mr. Shadb Rabbani</option>
-              <option value="pharmacyHod">Dr. Sanjay Kumar</option>
-              <option value="ltHod">Dr. Sanjay Kumar Choudhary</option>
-            </select>
+            />
             {errors.hod && <div className="invalid-feedback">{errors.hod}</div>}
           </div>
         )}

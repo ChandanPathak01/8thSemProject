@@ -43,19 +43,31 @@ function AdminHome() {
               <th>Email</th>
               <th>Contact</th>
               <th>Role</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {data.map((user, index) => {
               return (
                 <tr key={index}>
-                  <td  >{user.name}</td>
-                  <td  >{user.email}</td>
-                  <td >{user.contact}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.contact}</td>
                   <td>{user.role}</td>
-                  {/* <td>
-                    <Link to={`/userEdit/${user.id}`} className='btn btn-primary btn-sm me-2'>edit</Link>
-                  </td> */}
+                  <td>
+                    <Link
+                      to={`/userEdit/${user.id}`}
+                      className="btn btn-primary btn-sm me-2"
+                    >
+                      edit
+                    </Link>
+                    <Link
+                      to={`/userEdit/${user.id}`}
+                      className="btn btn-danger btn-sm me-1"
+                    >
+                      Delete
+                    </Link>
+                  </td>
                 </tr>
               );
             })}
