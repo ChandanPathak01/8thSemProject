@@ -43,6 +43,7 @@ function AdminHome() {
               <th>Email</th>
               <th>Contact</th>
               <th>Role</th>
+              <th>Department</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -54,6 +55,7 @@ function AdminHome() {
                   <td>{user.email}</td>
                   <td>{user.contact}</td>
                   <td>{user.role}</td>
+                  <td>{user.department}</td>
                   <td>
                     <Link
                       to={`/userEdit/${user.id}`}
