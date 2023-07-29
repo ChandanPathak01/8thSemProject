@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../Layout/Navbar";
 
 function AddUser() {
   const [data, setData] = useState({
@@ -124,6 +125,8 @@ function AddUser() {
   };
 
   return (
+    <> 
+    <Navbar/>
     <div className="d-flex flex-column align-items-center pt-4">
       <h2>Add User</h2>
       <form className="row g-3 w-50" onSubmit={handleSubmit}>
@@ -273,6 +276,7 @@ function AddUser() {
         </div>
       </form>
     </div>
+    </>
   );
 }
 

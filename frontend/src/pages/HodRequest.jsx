@@ -75,6 +75,9 @@ function LeaveRequestTable() {
     <Link to='/principal-home' className='skills'>
         <li>Home</li>
       </Link>
+      <Link to='/ProfilePri' className='skills' onClick={handleLogout}>
+        <li>Profile</li>
+      </Link>
       <Link to='/' className='skills' onClick={handleLogout}>
         <li>Logout</li>
       </Link>

@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import NavbarFac from './NavbarFac';
 
-import { FaBars } from "react-icons/fa"
-import { ImCross } from "react-icons/im"
-import { Link, useNavigate } from "react-router-dom";
+ 
 
 function ProfileFac() {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [Mobile, setMobile] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/Login');
-  }
+  
+  
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -40,23 +34,7 @@ function ProfileFac() {
 
   return (
     <>
-      <nav className='navbar'>
-        <h3 className='logo'>LMS</h3>
-        <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
-          <Link to='/hod-home' className='skills' key="home">
-            <li>Home</li>
-          </Link>
-          <Link to='/HodLeaveHistory' className='home' key="leave-history">
-            <li>Leave History</li>
-          </Link>
-          <Link to='/' className='skills' onClick={handleLogout} key="logout">
-            <li>Logout</li>
-          </Link>
-        </ul>
-        <button className='mobile-menu-icon' onClick={() => setMobile(!Mobile)}>
-          {Mobile ? <ImCross /> : <FaBars />}
-        </button>
-      </nav>
+       <NavbarFac/>
 
       <div className="profile-page">
   <h2>Profile Page</h2>

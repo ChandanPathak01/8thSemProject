@@ -1,9 +1,9 @@
 import "./App.css";
 import React from 'react';
-import {  Routes, Route, BrowserRouter } from "react-router-dom";
+import {Routes, Route, BrowserRouter } from "react-router-dom";
 import AdminHome from './pages/AdminHome';
 import UserPage from './pages/UserPage';
-import ProfileFac from "./pages/ProfileFac";
+import ProfileFac from "./Layout/ProfileFac";
 import ManageUser from './pages/ManageUser';
 import RegistrationForm from './pages/RegistrationForm';
 import Login from './pages/Login';
@@ -15,13 +15,17 @@ import FacultyRequest from './pages/FacultyRequest';
 import HodRequest from './pages/HodRequest';
 import HodApproved from './pages/HodApproved';
 import PrincipalHome from './pages/PrincipalHome';
-import Navbar from "./pages/Navbar";
-import NavbarFac from "./pages/NavbarFac";
+import Navbar from './Layout/Navbar';
+import NavbarFac from "./Layout/NavbarFac";
 // import ProtectedRoute from './ProtectedRoute';
-import ProfileHod from './pages/ProfileHod';
+import ProfileHod from './Layout/ProfileHod';
 import HodLeaveHistory from './pages/HodLeaveHistory';
 import ApplyLeaveHod from './pages/ApplyLeaveHod';
-import ProfilePri from './pages/ProfilePri';
+import ProfilePri from './Layout/ProfilePri';
+import PeopleOnLeave from "./pages/PeopleOnLeave";
+import PeopleLeave from "./pages/PeopleLeave";
+import NavbarHod from "./Layout/NavbarHod";
+import NavbarPri from "./Layout/NavbarPri";
 
  
 
@@ -39,7 +43,7 @@ function App() {
         <Route path="/faculty-home" element={<FacultyHome />} />
         <Route path="/NavbarFac" element={<NavbarFac/>}/>
         <Route path="/ApplyLeave" element={<ApplyLeave />} />
-        {/* <Route path="/PeopleOnLeave" element={<PeopleOnLeave/>}/>  */}
+        <Route path="/PeopleOnLeave" element={<PeopleOnLeave/>}/> 
         <Route path='/leaveHistory' element={<LeaveHistory/>}/>
         <Route path='/hod-home'  element={<HodHome/>}/>
         <Route path='/principal-home'  element={<PrincipalHome/>}/>
@@ -51,7 +55,9 @@ function App() {
         <Route path="/HodLeaveHistory" element={<HodLeaveHistory/>}/>
         <Route path="/ProfilePri" element={<ProfilePri/>}/>
         <Route path="/ApplyLeaveHod" element={<ApplyLeaveHod/>}/>
-         
+        <Route path="/PeopleLeave" element={<PeopleLeave/>}/>
+        <Route path="/NavbarHod" element={<NavbarHod/>}/>
+        <Route path="/NavbarPri" element={<NavbarPri/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -23,6 +23,9 @@ const NavbarFac = () => {
         if mobile screen ma xa bhane nav-links-mobile add huxa
         */}
         <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
+        <Link to='/faculty-home' className='skills'>
+            <li>Home</li>
+          </Link>
         <Link to='/ProfileFac' className='skills'>
             <li>Profile</li>
           </Link>
