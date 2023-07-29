@@ -88,6 +88,9 @@ function ApplyLeave() {
         } else {
           navigate("/principal-home");
         }
+      })
+      .catch((err) => {
+        window.alert(err.response.data.message)
       });
   };
 
