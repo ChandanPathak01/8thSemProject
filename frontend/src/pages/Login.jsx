@@ -6,13 +6,10 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [showFullText, setShowFullText] = useState(false);
-
   let navigate = useNavigate();
 
   const onLogin = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-
+    e.preventDefault();  
     const credentials = {
       email,
       password,
@@ -35,48 +32,9 @@ const Login = () => {
       alert(error.response.data.message);
     }
   };
-
-  // const toggleReadMore = () => {
-  //   setShowFullText((prev) => !prev);
-  // };
-
   return (
     <>
-      {/* <div className="login-page"> */}
-      {/* <div className="background-image"  >
-          <h1>Leave Management System</h1>
-          {showFullText ? (
-           <>  
-            <p>
-              In today's fast-paced world, managing leaves efficiently 
-              is crucial to ensure seamless operations and maintain a harmonious work environment. This project aims to provide
-              a user-friendly and responsive solution for faculty, Heads of Departments (HODs), and the Principal, empowering 
-              them to manage leave applications, track leave history, and monitor the availability of staff on leave.
-              The Leave Management System is a web-based application designed to revolutionize the leave application 
-              and approval process within educational institutions. In today's fast-paced world, managing leaves efficiently 
-              is crucial to ensure seamless operations and maintain a harmonious work environment...
-            </p>
-            <span className="read-more" onClick={toggleReadMore}>
-              Read Less
-            </span>
-          </>
-          ) : (
-            <>
-             
-              <p>
-                The Leave Management System is a web-based application designed to revolutionize the leave application 
-                and approval process within educational institutions.  
-              </p>
-              <span className="read-more" onClick={toggleReadMore}>
-                Read More
-              </span>
-            </>
-             
-             
-          )} */}
-        {/* </div> */}
 
-        
         <div className="login-form-container">
           <div className="login-form">
             <h3>Welcome to Login Page</h3>
@@ -102,7 +60,6 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-
               <button type="submit">Login</button>
             </form>
           </div>
