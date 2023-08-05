@@ -44,7 +44,10 @@ const userSchema = new mongoose.Schema({
   },
   tokens: [{
     type: String
-}]
+}],
+otp: {
+  type: String,
+}
 });
 
 const User = mongoose.model('appusers', userSchema);

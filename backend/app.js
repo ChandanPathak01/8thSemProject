@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/login');
 const userProfile = require('./routes/profile');
-const userRegRoutes = require('./routes/userRegRoutes');
+const addUser = require('./routes/userRegRoutes');
 const allUser = require('./routes/getUser');
 const leaveApply = require('./routes/applyForLeave');
 const leaveList = require('./routes/pplOnTheLeave');
@@ -15,6 +15,8 @@ const hodApproved = require('./routes/hodApproved');
 const leaveHistory = require('./routes/leaveHistory');
 const verification = require('./routes/verification');
 const logout = require('./routes/logout')
+const editUser = require('./routes/edit');
+const deleteUser = require('./routes/delete');
 
 
 
@@ -45,7 +47,9 @@ app.use(bodyParser.json());
 // Routes
 app.use('/login', authRoutes);
 app.use('/users', allUser);
-app.use('/userReg', userRegRoutes);
+app.use('/userReg', addUser);
+app.use('/editUser', editUser);
+app.use('/deleteUser', deleteUser);
 app.use('/userProfile', userProfile);
 app.use('/leaveApply', leaveApply);
 app.use('/leaveList', leaveList);
