@@ -224,7 +224,7 @@ button:last-child {
   flex-direction: column;
   align-items: center;
   background-color:rgb(242, 242, 250);
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   margin-top: 10px;
    
@@ -250,7 +250,7 @@ button:last-child {
 
 .leave-list-container th,
 .leave-list-container td {
-  padding: 20px;
+  padding: 10px;
   border: 2px solid rgb(2, 3, 129);
 }
 

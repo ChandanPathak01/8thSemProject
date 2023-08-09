@@ -5,7 +5,9 @@ import axios from 'axios';
 import Navbar from '../Layout/Navbar';
 
 function AdminHome() {
+   
   const [data, setData] = useState([]);
+
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios.get('http://localhost:8000/users',
@@ -21,7 +23,10 @@ function AdminHome() {
       .catch(err => console.log(err));
   }, );
   
-
+  const handelDelete= async(userId)=>{
+    const data= await axios.delete("http://localhost:8000/deleteUser/"+userId)
+    alert(data.data.message)
+  }
 
   
 
@@ -37,6 +42,7 @@ function AdminHome() {
         <table className='table table-bordered'>
           <thead>
             <tr>
+               
               <th>Name</th>
               <th>Email</th>
               <th>Contact</th>
@@ -49,6 +55,7 @@ function AdminHome() {
             {data.map((user, index) => {
               return (
                 <tr key={index}>
+                  
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.contact}</td>
@@ -56,13 +63,13 @@ function AdminHome() {
                   <td>{user.department}</td>
                   <td>
                     <Link
-                      to={`/userEdit/${user.id}`}
+                      to={`/UserEdit/${user.id}`}
                       className="btn btn-primary btn-sm me-2"
                     >
                       edit
                     </Link>
                     <Link
-                      to={`/userEdit/${user.id}`}
+                      onClick={()=>handelDelete(user.userId)}
                       className="btn btn-danger btn-sm me-1"
                     >
                       Delete
@@ -79,5 +86,4 @@ function AdminHome() {
     </div>
   );
 }
-
 export default AdminHome;
