@@ -23,11 +23,23 @@ function AdminHome() {
       .catch(err => console.log(err));
   }, );
   
-  const handelDelete= async(userId)=>{
-    const data= await axios.delete("http://localhost:8000/deleteUser/"+userId)
-    alert(data.data.message)
-  }
+  
+  const handleDelete = async (userId) => {
+    try {
+      const response = await axios.delete(`http://localhost:8000/deleteUser/${userId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        }
+      });
 
+      alert(response.data.message);
+      // Refresh the data after successful deletion
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
 
   return (
@@ -69,7 +81,7 @@ function AdminHome() {
                       edit
                     </Link>
                     <Link
-                      onClick={()=>handelDelete(user.userId)}
+                        onClick={() => handleDelete(user._id)}
                       className="btn btn-danger btn-sm me-1"
                     >
                       Delete
