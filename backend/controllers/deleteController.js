@@ -1,13 +1,15 @@
 const User = require('../models/User');
+// const mongoose = require('mongoose');
+
 
 const deleteUser = async (req, res) => {
   try {
-    const userId = req.params.id;
-    const user = await User.findOne({_id:userId});
+    const id = req.params.id;
+    const user = await User.findOne({_id:id});
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    await User.deleteOne({_id:userId});
+    await User.deleteOne({_id:id});
     res.status(200).json({ message: 'User deleted successfully' });
   } catch (error) {
     console.error(error);

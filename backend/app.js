@@ -17,6 +17,8 @@ const verification = require('./routes/verification');
 const logout = require('./routes/logout')
 const editUser = require('./routes/edit');
 const deleteUser = require('./routes/delete');
+const changePassword = require('./routes/changePassword');
+
 
 
 
@@ -59,6 +61,7 @@ app.use('/hodApproved', hodApproved);
 app.use('/leaveHistory', leaveHistory);
 app.use('/verify', verification);
 app.use('/logout', logout);
+app.use('/changePassword', changePassword);
 
 app.use((req,res,next)=>{
   res.status(404).json({

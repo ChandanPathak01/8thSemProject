@@ -26,6 +26,7 @@ function AdminHome() {
   
   const handleDelete = async (userId) => {
     try {
+      console.log(userId);
       const response = await axios.delete(`http://localhost:8000/deleteUser/${userId}`, {
         headers: {
           'Content-Type': 'application/json',
