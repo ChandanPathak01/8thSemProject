@@ -5,6 +5,6 @@ const { authenticateAdmin, authenticateUser } = require('../middleware/authMiddl
 
 
 // Register a new user by admin
-router.get('/', authenticateUser,authenticateAdmin, deleteUser.deleteUser);
+router.delete('/:id', authenticateUser,authenticateAdmin, deleteUser.deleteUser);
 
 module.exports = router;
