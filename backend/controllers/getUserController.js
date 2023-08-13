@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 const userDetails = async (req,res) => {
     try{   
-    const userDetails = await User.find({ role: { $ne: 'Admin' } }, 'name email  contact role department -_id');
+    const userDetails = await User.find({ role: { $ne: 'Admin' } }, 'name email  contact role department ');
 res.send({userDetails});    
 } catch (error) {
     console.log(error);

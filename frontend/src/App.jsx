@@ -26,7 +26,7 @@ import PeopleOnLeave from "./pages/PeopleOnLeave";
 import PeopleLeave from "./pages/PeopleLeave";
 import NavbarHod from "./Layout/NavbarHod";
 import NavbarPri from "./Layout/NavbarPri";
-import UserEdit from  "./pages/UserEdit";
+import UpdateUser from "./pages/UpdateUser";
 
  
 
@@ -35,7 +35,6 @@ function App() {
      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-         
         <Route path="/admin-home" element={<AdminHome />} />
         <Route path="/Navbar" element={<Navbar/>}/>
         <Route path="/ManageUser" element={<ManageUser />} />
@@ -59,7 +58,7 @@ function App() {
         <Route path="/PeopleLeave" element={<PeopleLeave/>}/>
         <Route path="/NavbarHod" element={<NavbarHod/>}/>
         <Route path="/NavbarPri" element={<NavbarPri/>}/>
-        <Route path="UserEdit/:id" element={<UserEdit/>}/>
+        <Route path="/UpdateUser" element={<UpdateUser/>}/>
       </Routes>
     </BrowserRouter>
   );

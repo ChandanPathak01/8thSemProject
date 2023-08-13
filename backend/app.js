@@ -18,6 +18,7 @@ const logout = require('./routes/logout')
 const editUser = require('./routes/edit');
 const deleteUser = require('./routes/delete');
 const changePassword = require('./routes/changePassword');
+const getUserById = require('./routes/getUserById');
 
 
 
@@ -49,6 +50,7 @@ app.use(bodyParser.json());
 // Routes
 app.use('/login', authRoutes);
 app.use('/users', allUser);
+app.use('/user',getUserById);
 app.use('/userReg', addUser);
 app.use('/editUser', editUser);
 app.use('/deleteUser', deleteUser);
