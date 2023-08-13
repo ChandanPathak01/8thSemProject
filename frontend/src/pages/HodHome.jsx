@@ -14,7 +14,7 @@ function HodHome() {
     //   const token = localStorage.getItem("token");
     //   axios
     //   .post(
-    //     `http://localhost:8000/logout`,
+    //     `/logout`,
     //     { },
     //     {
     //       headers: {

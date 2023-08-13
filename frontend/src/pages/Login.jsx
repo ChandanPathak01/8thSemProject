@@ -16,7 +16,7 @@ const Login = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:8000/login", credentials);
+      const response = await axios.post("/login", credentials);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.role);
       if (response.data.role === "Admin") {

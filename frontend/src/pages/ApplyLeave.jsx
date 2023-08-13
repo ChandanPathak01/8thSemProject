@@ -73,7 +73,7 @@ function ApplyLeave() {
     const role = localStorage.getItem("role");
 
     axios
-      .post("http://localhost:8000/leaveApply", leaveData, {
+      .post("/leaveApply", leaveData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`

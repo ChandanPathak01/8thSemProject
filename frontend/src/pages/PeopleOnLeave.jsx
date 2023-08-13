@@ -27,7 +27,7 @@ function PeopleOnLeave() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let url = "http://localhost:8000/leaveList";
+        let url = "/leaveList";
         if (selectedDate) {
           url += `?date=${selectedDate}`;
         }

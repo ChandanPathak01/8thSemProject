@@ -11,7 +11,7 @@ const LeaveHistory = () => {
   useEffect(() => {
     const fetchLeaveHistory = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/leaveHistory", {
+        const response = await axios.get("/leaveHistory", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

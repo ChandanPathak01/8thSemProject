@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const cors=require('cors');
 const app = express();
@@ -64,6 +65,13 @@ app.use('/leaveHistory', leaveHistory);
 app.use('/verify', verification);
 app.use('/logout', logout);
 app.use('/changePassword', changePassword);
+
+console.log(path.join(__dirname,'..', 'frontend/build'))
+
+app.use(express.static(path.join(__dirname,'..', 'frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname,'..', 'frontend/build/index.html'))
+);
 
 app.use((req,res,next)=>{
   res.status(404).json({

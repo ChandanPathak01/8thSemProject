@@ -31,7 +31,7 @@ function UpdateUser(props) {
 
     try {
       const response = await axios.put(
-        `http://localhost:8000/editUser/${user._id}`,
+        `/editUser/${user._id}`,
         {
           name,
           email,

@@ -12,7 +12,7 @@ function ProfileFac() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    axios.get('http://localhost:8000/userProfile', {
+    axios.get('/userProfile', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,

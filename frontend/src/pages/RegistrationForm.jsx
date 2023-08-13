@@ -90,7 +90,7 @@ function AddUser() {
     if (validateForm()) {
       const token = localStorage.getItem("token");
       axios
-        .post("http://localhost:8000/userReg/register", data, {
+        .post("/userReg/register", data, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

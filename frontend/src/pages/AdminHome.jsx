@@ -10,7 +10,7 @@ function AdminHome() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/users", {
+      .get("/users", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -25,7 +25,7 @@ function AdminHome() {
   const handleDelete = async (userId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8000/deleteUser/${userId}`,
+        `/deleteUser/${userId}`,
         {
           headers: {
             "Content-Type": "application/json",

@@ -11,7 +11,7 @@ function LeaveRequestTable() {
   const [Mobile, setMobile] = useState(false);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/facultyRequest", {
+      .get("/facultyRequest", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ function LeaveRequestTable() {
 
     axios
       .put(
-        `http://localhost:8000/verify`,
+        `/verify`,
         { status: action, id: id },
         {
           headers: {

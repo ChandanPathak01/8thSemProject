@@ -15,7 +15,7 @@ function LeaveRequestTable() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/hodApproved", {
+      .get("/hodApproved", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ function LeaveRequestTable() {
 
     axios
       .put(
-        `http://localhost:8000/verify`,
+        `/verify`,
         { status: action, id: id },
         {
           headers: {

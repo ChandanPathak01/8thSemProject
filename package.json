@@ -1,0 +1,21 @@
+{
+  "name": "8thsemproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChandanPathak01/8thSemProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChandanPathak01/8thSemProject/issues"
+  },
+  "homepage": "https://github.com/ChandanPathak01/8thSemProject#readme"
+}
