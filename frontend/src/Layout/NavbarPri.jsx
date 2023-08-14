@@ -29,7 +29,9 @@ const NavbarPri = () => {
         <Link to='/ProfilePri' className='skills'>
             <li>Profile</li>
           </Link>
-           
+          <Link to='/change-pass' className='skills'>
+            <li>Change Password</li>
+          </Link>
           <Link to='/' className='skills' onClick={handleLogout}>
             <li>Logout</li>
           </Link>

@@ -25,7 +25,6 @@ li {
   height: 50px;
   width: 100%; /* Set width to 100% to match viewport width */
   position: fixed; /* Fix the navigation bar at the top */
-  box-shadow: rgba(50, 50, 93, 0.23) 0px 30px 30px -20px;
   background-color: rgb(2, 3, 129);
   top: 0;
   z-index: 1000;
@@ -45,7 +44,7 @@ li {
 
 .nav-links li {
   font-size: 16px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   margin: 0 10px;
   cursor: pointer;
   text-transform: capitalize;
@@ -104,9 +103,11 @@ button {
     transition: all 0.5s ease-in-out;
     width: 100%;
     background-color: rgb(2, 3, 129);
+    opacity: 90%;
+    border-radius: 25px;
   }
   ul li {
-    padding: 40px;
+    padding: 8px;
     width: 100%;
     transition: all 0.5s ease-in-out;
     text-align: center;

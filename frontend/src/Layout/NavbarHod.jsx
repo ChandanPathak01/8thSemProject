@@ -33,7 +33,9 @@ const NavbarHod = () => {
           <Link to='/HodLeaveHistory' className='home'>
             <li>Leave History</li>
           </Link>
-           
+          <Link to='/change-pass' className='skills'>
+            <li>Change Password</li>
+          </Link>
           <Link to='/' className='skills' onClick={handleLogout}>
             <li>Logout</li>
           </Link>

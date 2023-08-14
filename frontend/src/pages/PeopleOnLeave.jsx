@@ -68,13 +68,14 @@ function PeopleOnLeave() {
     <div>
       <Navbar />
       <div className="leave-list-container">
-        <h2>List of People on Leave</h2>
+        <h2 style={{marginTop:'8%'}}>List of People on Leave</h2>
         <div className="filter-container">
           <input
             type="date"
             id="dateFilter"
             value={selectedDate}
             onChange={(event) => setSelectedDate(event.target.value)}
+
           />
         </div>
         <table>

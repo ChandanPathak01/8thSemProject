@@ -27,6 +27,7 @@ import PeopleLeave from "./pages/PeopleLeave";
 import NavbarHod from "./Layout/NavbarHod";
 import NavbarPri from "./Layout/NavbarPri";
 import UpdateUser from "./pages/UpdateUser";
+import ChangePass from './pages/ChangePass';
 
  
 
@@ -59,6 +60,8 @@ function App() {
         <Route path="/NavbarHod" element={<NavbarHod/>}/>
         <Route path="/NavbarPri" element={<NavbarPri/>}/>
         <Route path="/UpdateUser" element={<UpdateUser/>}/>
+        <Route path="/change-pass" element={<ChangePass/>}/>
+        
       </Routes>
     </BrowserRouter>
   );

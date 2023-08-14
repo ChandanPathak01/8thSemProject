@@ -30,8 +30,11 @@ const NavbarFac = () => {
             <li>Profile</li>
           </Link>
 
-          <Link to='/LeaveHistory' className='home'>
+          <Link to='/LeaveHistory' className='skills'>
             <li>Leave History</li>
+          </Link>
+          <Link to='/change-pass' className='skills'>
+            <li>Change Password</li>
           </Link>
            
           <Link to='/' className='skills' onClick={handleLogout}>

@@ -110,14 +110,16 @@
 }
 
 .apply-button, .leave-button {
-  padding: 10px 20px;
-  margin-bottom: 10px;
+  padding: 10px 10px;
+  margin-bottom: 5px;
   background-color:rgb(2, 3, 129);
   color: #fff;
   font-size: 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  
+  
 }
 
 .apply-button:hover{
@@ -136,6 +138,7 @@
   padding: 20px;
   background-color: #cbd1d0;
   border-radius: 5px;
+  margin-top: 5%;
 }
 
 .form-group {
@@ -172,7 +175,8 @@ textarea {
 }
 .center-heading {
   text-align: center;
-  margin-top: 25px;
+  margin-top: 70px;
+  font-size: 25px;
 }
 
 .leave-request-table {
@@ -217,6 +221,7 @@ button:last-child {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .leave-list-container {
@@ -237,7 +242,7 @@ button:last-child {
 
 
 .leave-list-container h2 {
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 10px;
 }
 
@@ -346,6 +351,7 @@ button:last-child {
 .btn-add {
   background-color: darkblue;
   color: white;
+  margin-top: 3%;
   /* Add any other desired styles */
 }
 
@@ -509,7 +515,8 @@ button:last-child {
   height: 100vh; /* Adjust the height to center the form */
   padding: 20px;
   background-image:url('background.jpg');
-  background-size: cover; /* Add a background color to the container */
+  background-size: cover; 
+   
 }
 
 /* Styling for the login form */
@@ -522,7 +529,7 @@ button:last-child {
   border-radius: 5px;
   text-align: center;
    
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  box-shadow: 3px 5px     #258181; /* Add a subtle box shadow */
 }
 
 /* Styling for the login form title */
@@ -586,3 +593,7 @@ button:last-child {
   background-color: #221a91;
   color:rgb(250, 250, 192);
 }
+
+
+ 
+ 

@@ -129,7 +129,7 @@ function AddUser() {
     <>
       <Navbar />
       <div className="d-flex flex-column align-items-center pt-5" >
-        <h2>Add User</h2>
+        <h2  style={{marginTop:'3%'}}> Add User</h2>
         <form className="row g-3 mx-auto"   onSubmit={handleSubmit}>
           <div className="col-md-6">
             <label htmlFor="inputName" className="form-label">

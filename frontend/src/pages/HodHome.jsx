@@ -7,44 +7,6 @@ import { Link} from "react-router-dom";
 
 function HodHome() {
      
-     
-  
-    
-    // const handleLogout = async() => {
-    //   const token = localStorage.getItem("token");
-    //   axios
-    //   .post(
-    //     `/logout`,
-    //     { },
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   )
-    //   .then((response) => {
-    //     localStorage.removeItem('token');
-
-    //   navigate('/');
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error in logout:", error);
-    //   });
-      
-    // }
-     
-    // const handleLogout = () => {
-    //   localStorage.removeItem('token');
-    //   navigate('/Login');
-    // }
-     
-     
-    
-  
-     
-  
-   
 
  
     return (

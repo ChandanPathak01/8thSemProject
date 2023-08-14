@@ -29,7 +29,9 @@ const Navbar = () => {
           <Link to='/peopleOnLeave' className='peopleonleave'>
             <li>People On Leave</li>
           </Link>
-           
+          <Link to='/change-pass' className='skills'>
+            <li>Change Password</li>
+          </Link> 
           <Link to='/' className='logout' onClick={handleLogout}>
             <li>Logout</li>
           </Link>
